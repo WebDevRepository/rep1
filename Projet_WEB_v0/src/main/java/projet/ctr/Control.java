@@ -11,8 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import projet.modele.Client;
 import projet.repository.ClientRepository;
@@ -31,21 +33,18 @@ public class Control {
 		return "formClient";	
 	}
 	
-	@RequestMapping(value="/clientEnregister")
-	public String clientEnreg(Model modele,@Valid Client  client,BindingResult bindingResult)
+	@RequestMapping(value="/clientEnregister",method=RequestMethod.POST)
+	public String clientEnreg(@RequestParam String nomC,@RequestParam String prenomC,@RequestParam String villeC,Model modele)
 	{
-		if(bindingResult.hasErrors()) 
-		{
-			return "formClient";
-		}
-		else 
-		{
-		modele.addAttribute("client",clientR.save(client));
+		Client client = new Client(nomC,prenomC,villeC);
+		clientR.save(client);
 		listeClients=(List<Client>) clientR.findAll();
 		modele.addAttribute("listeClients",listeClients);
-		return "lesClients";	
-		}
+		return "formClient";	
+		
 	}
+	
+
 	
 	
 

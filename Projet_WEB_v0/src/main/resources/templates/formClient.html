@@ -1,18 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1"></meta>
 <title>Insert title here</title>
 </head>
 <body>
 <h1>Formulaire d'ajout d'un nouveau client</h1>
-<form action="/clientEnregister" method="get">
+<form th:action="@{/clientEnregister}" method="post">
 Nom:<input type="text" name="nomC"/><br/>
 Prenom:<input type="text" name="prenomC"/><br/>
 Ville:<input type="text" name="villeC"/><br/>
 <input type="submit" value="Enregistrer"/>
-
-<!-- <a href="Control">Afficher les clients</a>  -->
+<table border="1">
+<th>Nom</th><th>Prenom</th><th>Ville</th>
+<tr th:each="lc: ${listeClients}">
+<td th:text="${{lc.nom}}"></td>
+<td th:text="${{lc.prenom}}"></td>
+<td th:text="${{lc.ville}}"></td>
+<td><a href="/supprimer">Supprimer</a></td>
+</tr>
+</table>
 </form>
 </body>
 </html>

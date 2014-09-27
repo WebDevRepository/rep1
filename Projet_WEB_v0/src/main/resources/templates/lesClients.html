@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="ISO-8859-1"></meta>
 <title>Insert title here</title>
 </head>
 <body>
-<ul>
-  <li th:each="listeClients" th:text="${listeClients.nom}" />
-</ul>
+<h1>Liste des clients </h1>
+
+
+<table border="1">
+<th>Nom</th><th>Prenom</th><th>Ville</th>
+<tr th:each="lc: ${listeClients}">
+<td th:text="${{lc.nom}}"></td>
+<td th:text="${{lc.prenom}}"></td>
+<td th:text="${{lc.ville}}"></td>
+</tr>
+</table>
 </body>
 </html>

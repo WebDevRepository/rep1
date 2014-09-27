@@ -1,9 +1,16 @@
 package projet.ctr;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.validation.Valid;
+
 import org.apache.catalina.connector.Request;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -13,7 +20,9 @@ import projet.repository.ClientRepository;
 @Controller
 public class Control {
 	
-	ClientRepository clientR;
+	@Autowired
+	public ClientRepository clientR;
+	List<Client> listeClients = new ArrayList<Client>();
 	 
 	@RequestMapping(value="/index", method=RequestMethod.GET)
 	public String clientForm(Model modele)
@@ -22,11 +31,20 @@ public class Control {
 		return "formClient";	
 	}
 	
-	@RequestMapping(value="/clientEnregister", method=RequestMethod.GET)
-	public String clientEnreg(Model modele)
+	@RequestMapping(value="/clientEnregister")
+	public String clientEnreg(Model modele,@Valid Client  client,BindingResult bindingResult)
 	{
-		modele.addAttribute("client",clientR.save(new Client()));
-		return "formClient";	
+		if(bindingResult.hasErrors()) 
+		{
+			return "formClient";
+		}
+		else 
+		{
+		modele.addAttribute("client",clientR.save(client));
+		listeClients=(List<Client>) clientR.findAll();
+		modele.addAttribute("listeClients",listeClients);
+		return "lesClients";	
+		}
 	}
 	
 	

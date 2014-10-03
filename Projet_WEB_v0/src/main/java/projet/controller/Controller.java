@@ -1,4 +1,4 @@
-package projet.ctr;
+package projet.controller;
 
 
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ import projet.modele.Client;
 import projet.repository.ClientRepository;
 
 @Controller
-public class Control {
+public class Controller {
 	
 	@Autowired
 	public ClientRepository clientR;

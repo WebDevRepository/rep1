@@ -11,7 +11,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
-import projet.modele.Client;
+import projet.model.Client;
 import projet.repository.ClientRepository;
 
 @Configuration
@@ -20,12 +20,16 @@ import projet.repository.ClientRepository;
 public class Application {
 
 	public static void main(String[] args) {
+		
 		 	ConfigurableApplicationContext context = SpringApplication.run(Application.class);
 	        ClientRepository repository = context.getBean(ClientRepository.class);
 	        
-	        System.out.println("Sauvegarde en cours ......");
+	        System.out.println("Sauvegarde en cours ...");
 	        repository.save(new Client("imad","boussouf","constantine"));
 	        repository.save(new Client("tedj", "ammar","tripoli"));
+	        repository.save(new Client("elmourabit", "anas","rabat"));
+	        repository.save(new Client("ted", "bob","eljadida"));
+
 	        
 	        List<Client> listeClients = (List<Client>) repository.findAll();
 	        System.out.println("Affichage de nos clients");

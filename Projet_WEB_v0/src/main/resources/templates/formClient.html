@@ -5,19 +5,21 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>Formulaire d'ajout d'un nouveau client</h1>
-<form th:action="@{/clientEnregister}" method="post">
-Nom:<input type="text" name="nomC"/><br/>
-Prenom:<input type="text" name="prenomC"/><br/>
-Ville:<input type="text" name="villeC"/><br/>
-<input type="submit" value="Enregistrer"/>
-<table border="1">
-<th>Nom</th><th>Prenom</th><th>Ville</th>
+   <h1>Formulaire d'ajout d'un nouveau client</h1>
+   <form th:action="@{/clientEnregister}" method="post">
+      Nom:<input type="text" name="nomC"/><br/>
+      Prenom:<input type="text" name="prenomC"/><br/>
+      Ville:<input type="text" name="villeC"/><br/>
+   <input type="submit" value="Enregistrer"/>
+   <table border="1">
+   <th>Nom</th><th>Prenom</th><th>Ville</th>
+   
 <tr th:each="lc: ${listeClients}">
 <td th:text="${{lc.nom}}"></td>
 <td th:text="${{lc.prenom}}"></td>
 <td th:text="${{lc.ville}}"></td>
 <td><a href="/supprimer">Supprimer</a></td>
+
 </tr>
 </table>
 </form>

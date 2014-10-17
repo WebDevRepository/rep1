@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"></link>
+    
+        <title>Spring Security Example </title>
+    </head>
+    <body>
+        <div th:if="${param.error}">
+            Invalid username and password.
+        </div>
+        <div th:if="${param.logout}">
+            You have been logged out.
+        </div>
+      <!--   <form th:action="@{/Authentification}" method="post">
+            <div><label> User Name : <input type="text" name="login"/> </label></div>
+            <div><label> Password: <input type="password" name="pwd"/> </label></div>
+            
+            <div><input type="submit" value="Sign In"/></div>
+        </form>
+         -->
+<!--         <div class="container"> -->
+
+   
+    
+    
+<!--     <div class="container login"> -->
+<!--     <div class="row "> -->
+<!--         <div class="center span4 well"> -->
+<!--             <legend>Please Sign In</legend> -->
+           
+<!--              <form th:action="@{/Authentification}" method="post" class="form-signin" role="form"> -->
+<!--               <input type="text" name="login" class="form-control" placeholder="Username" /> -->
+<!--               <input type="password" name="pwd" class="form-control" placeholder="Password" /> -->
+<!--             <label class="checkbox"> -->
+<!--                 <input type="checkbox" name="remember" value="1" /> Remember Me -->
+<!--             </label> -->
+<!--             <button type="submit" name="submit" class="btn btn-primary btn-block">Sign in</button> -->
+<!--             </form> -->
+<!--         </div> -->
+<!--     </div> -->
+<!-- </div> -->
+<form th:action="@{/Authentification}" method="post" class="form-horizontal" role="form">
+  <div class="form-group">
+    <label for="inputEmail3" class="col-sm-2 control-label">Login :</label>
+    <div class="col-sm-10">
+      <input type="text" name="login" class="form-control" id="inputEmail3" placeholder="Email"/>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+    <div class="col-sm-10">
+      <input type="password" name ="pwd" class="form-control" id="inputPassword3" placeholder="Password"/>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox"/> Remember me
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-default">Sign in</button>
+    </div>
+  </div>
+</form>
+
+
+    </body>
+</html>

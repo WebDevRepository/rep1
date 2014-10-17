@@ -14,6 +14,10 @@ public class Administrateur {
 	private String email;
 	private String mdp;
 	
+	public Administrateur() {
+		
+	}
+	
 	
 	public Administrateur(String email, String mdp) {
 		this.email = email;
@@ -24,6 +28,18 @@ public class Administrateur {
 	public String getEmail() {
 		return email;
 	}
+	
+	
+	public long getId() {
+		return id;
+	}
+
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+
 	public void setEmail(String email) {
 		this.email = email;
 	}

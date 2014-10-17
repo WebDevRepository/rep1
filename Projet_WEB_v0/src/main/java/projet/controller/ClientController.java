@@ -21,7 +21,10 @@ public class ClientController {
 	@Autowired
 	public ClientRepository clientR;
 	List<Client> listeClients = new ArrayList<Client>();
-	 
+	
+
+	
+	
 	@RequestMapping(value="/index", method=RequestMethod.GET)
 	public String clientForm(Model modele)
 	{

@@ -1,11 +1,11 @@
-<!-- <!DOCTYPE HTML> -->
-<!-- <html xmlns:th="http://www.thymeleaf.org"> -->
-<!-- <head> -->
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"></link> -->
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"></link>
     
-<!--     <title>Fiche Produit</title> -->
+    <title>Fiche Produit</title>
     
-<!--     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
  
     
 <!-- </head> -->
@@ -89,9 +89,9 @@
   </body>
 </html> -->
 
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
+<!-- <!DOCTYPE html> -->
+<!-- <html xmlns:th="http://www.thymeleaf.org"> -->
+<!-- <head> -->
 <meta charset="ISO-8859-1"></meta>
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"></link>
@@ -106,7 +106,7 @@
 </head>
 <body>
 <p>Vous etes connecte en tant que : <strong th:text="${session.admin}"></strong></p>
-<form class="form-horizontal" action="#" th:object="${caissier}" method="post">
+<form class="form-horizontal" action="#" th:object="${product}" method="post">
 <fieldset>
 
 
@@ -116,7 +116,7 @@
 <div class="control-group">
   <label class="control-label" for="textinput">Identifiant :</label>
   <div class="controls">
-    <input id="textinput" name="nom" th:field="*{id}" type="text" placeholder="Identifiant" class="input-xlarge" required="required" autofocus="autofocus"/>
+    <input id="textinput" name="id" th:field="*{id}" type="text" placeholder="Identifiant" class="input-xlarge" required="required" autofocus="autofocus"/>
     
   </div>
 </div>
@@ -125,18 +125,12 @@
 <div class="control-group">
   <label class="control-label" for="textinput">Nom :</label>
   <div class="controls">
-    <input id="textinput" name="prenom" th:field="*{name}" type="text" placeholder="Nom du produit" class="input-xlarge" required="required"/>
+    <input id="textinput" name="name" th:field="*{name}" type="text" placeholder="Nom du produit" class="input-xlarge" required="required"/>
   </div>
 </div>
 
 
-<!-- <div class="control-group">
-<!--   <label class="control-label" for="textinput">Age :</label>
-<!--   <div class="controls">
-<!--     <input id="textinput" name="age" th:field="*{age}" type="number" min="18" max="60" placeholder="Age du caissier" class="input-xlarge" required="required"/>
-<!--   </div>
-<!-- </div>
--->
+
 <div class="control-group">
   <label class="control-label" for="textinput">Description :</label>
   <div class="controls">
@@ -151,11 +145,6 @@
     <input id="textinput" name="adresse" th:field="*{price}" type="text" placeholder="prix" class="input-xlarge" required="required"/>
   </div>
 </div>
-
-
- 
-  
-  
 
 
 <!-- Button -->

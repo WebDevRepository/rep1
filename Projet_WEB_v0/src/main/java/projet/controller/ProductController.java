@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import projet.model.Administrateur;
 import projet.model.Product;
 import projet.repository.ProductRepository;
 
@@ -21,11 +22,6 @@ public class ProductController {
 	private ProductRepository productRepository;
 	
 	
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String Auth(Model model) {
-	//model.addAttribute("product", new Product());
-		return "login";
-	}
 	
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public String createForm(Model model) {

@@ -90,6 +90,12 @@ public class AdministrateurController {
 		return "AccueilAdmin";	
 	}
 	
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String Auth(Administrateur administrateur) {
+		return "AccueilAdmin";
+	}
+	
+	
 	
 	
 	

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1"></meta>
+<title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"></link>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<style type="text/css">
+   legend { text-align: center;}
+   
+   fieldset {margin-left: 450px;}
+   
+   
+</style>
+</head>
+<body>
+<p>Vous etes connecte en tant que : <strong th:text="${session.admin}"></strong></p>
+<form class="form-horizontal" action="#" th:object="${caissier}" method="post">
+<fieldset>
+
+<!-- Form Name -->
+<legend>Gestion des caissiers</legend>
+
+<!-- Text input Nom-->
+<div class="control-group">
+  <label class="control-label" for="textinput">Nom :</label>
+  <div class="controls">
+    <input id="textinput" name="nom" th:field="*{nom}" type="text" placeholder="Nom du caissier" class="input-xlarge" required="required" autofocus="autofocus"/>
+    
+  </div>
+</div>
+
+<!-- Text input Prenom-->
+<div class="control-group">
+  <label class="control-label" for="textinput">Prenom :</label>
+  <div class="controls">
+    <input id="textinput" name="prenom" th:field="*{prenom}" type="text" placeholder="Prenom du caissier" class="input-xlarge" required="required"/>
+  </div>
+</div>
+
+<!-- Text input Age-->
+<div class="control-group">
+  <label class="control-label" for="textinput">Age :</label>
+  <div class="controls">
+    <input id="textinput" name="age" th:field="*{age}" type="number" min="18" max="60" placeholder="Age du caissier" class="input-xlarge" required="required"/>
+  </div>
+</div>
+
+<!-- Text input Adresse-->
+<div class="control-group">
+  <label class="control-label" for="textinput">Adresse :</label>
+  <div class="controls">
+    <input id="textinput" name="adresse" th:field="*{adresse}" type="text" placeholder="Adresse du caissier" class="input-xlarge" required="required"/>
+  </div>
+</div>
+
+<!-- Text input Email-->
+<div class="control-group">
+  <label class="control-label" for="textinput">Email :</label>
+  <div class="controls">
+    <input id="textinput" name="email" th:field="*{email}" type="email" placeholder="votre@dresse.fr" class="input-xlarge" required="required"/>
+  </div>
+</div>
+  
+  <!-- Text input Mdp-->
+<div class="control-group">
+  <label class="control-label" for="textinput">Mot de passe :</label>
+  <div class="controls">
+    <input id="textinput" name="mdp" th:field="*{mdp}" type="text" placeholder="Mot de passe" class="input-xlarge" required="required"/>
+  </div>
+  
+  
+</div>
+
+<!-- Button -->
+<div class="control-group">
+  <label class="control-label" for="singlebutton"></label>
+  <div class="controls">
+    <button id="singlebutton" name="singlebutton" class="btn btn-primary">Enregistrer</button>
+  </div>
+</div>
+
+</fieldset>
+</form>
+
+
+
+</body>
+</html>

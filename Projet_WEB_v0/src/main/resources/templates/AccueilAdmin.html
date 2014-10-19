@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+    <meta charset="utf-8"></meta>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+    <meta name="description" content=""></meta>
+    <meta name="author" content=""></meta>
+    <link rel="icon" href="../../favicon.ico"></link>
+
+    <title>Signin Template for Bootstrap</title>
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"></link>
+
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+   <style type="text/css">
+   h2 { text-align: center;}
+   
+   .container { width: 400px;}
+   
+   
+   
+   
+   </style>
+  
+  </head>
+
+  <body>
+ <h2 class="form-signin-heading">Connexion administrateur</h2>
+    <div class="container">
+
+      <form action="/signin" th:object="${administrateur}" class="form-signin" role="form" method="post">
+        <input type="email" th:field="*{email}" class="form-control" placeholder="Email address"  required="required" autofocus="autofocus"/>
+        <input type="password" th:field="*{mdp}" class="form-control" placeholder="Password" required="required"/>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      </form>
+
+    </div> 
+  
+
+</body>
+</html>

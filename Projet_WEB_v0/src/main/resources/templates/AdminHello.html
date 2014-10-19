@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1"></meta>
+<title>Insert title here</title>
+</head>
+<body>
+<form th:action="@{/signout}" method="get">
+<p>Vous etes connecte en tant que : <strong th:text="${session.admin}"></strong>
+
+
+ <input type="submit" value="Se deconnecter" />
+
+</p>
+</form>
+
+<span><a th:href="@{/caissiers}">Gestion des caissiers</a></span>
+<span><a th:href="@{/produits}">Gestion des produits</a></span> 
+</body>
+</html>

@@ -14,10 +14,10 @@ import org.springframework.security.config.annotation.web.servlet.configuration.
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers( "/Authentification").permitAll()
+		http.authorizeRequests().antMatchers( "/login").permitAll()
 				.anyRequest().authenticated();
 
-		http.formLogin().loginPage("/Authentification").usernameParameter("login")
+		http.formLogin().loginPage("/login").usernameParameter("login")
 				.passwordParameter("pwd").permitAll().and().logout().logoutUrl("/bye").logoutSuccessUrl("/").permitAll();
 		http
         .csrf().disable();

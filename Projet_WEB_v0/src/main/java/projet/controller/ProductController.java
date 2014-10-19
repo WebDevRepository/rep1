@@ -21,10 +21,10 @@ public class ProductController {
 	private ProductRepository productRepository;
 	
 	
-	@RequestMapping(value = "/Authentification", method = RequestMethod.GET)
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String Auth(Model model) {
 	//model.addAttribute("product", new Product());
-		return "Authentification";
+		return "login";
 	}
 	
 	@RequestMapping(value = "/create", method = RequestMethod.GET)

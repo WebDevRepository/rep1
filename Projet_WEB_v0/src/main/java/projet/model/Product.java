@@ -16,6 +16,20 @@ public class Product {
 	@GeneratedValue
 	private long id = -1;
 	private String name;
+	private String description;
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public long getPrice() {
+		return price;
+	}
+	public void setPrice(long price) {
+		this.price = price;
+	}
+	private long price;
 	
 	public long getId() {
 		return id;
@@ -28,6 +42,11 @@ public class Product {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", name=" + name + ", description="
+				+ description + ", price=" + price + "]";
 	}
 
 	

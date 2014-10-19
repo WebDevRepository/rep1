@@ -77,10 +77,10 @@ public class AdministrateurController {
 	
 	
 	
-	@RequestMapping(value="/produits", method=RequestMethod.GET)
+	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public String loadProduits()
 	{
-		return "formProduits";	
+		return "list";	
 	}
 	
 	@RequestMapping(value="/signout", method=RequestMethod.GET)

@@ -29,17 +29,17 @@ public class CaissierController {
 	public String saveCaissier(@ModelAttribute Caissier caissier)
 	{
 		caissierRepository.save(caissier);
-		return "redirect:/";	
+		return "redirect:/c";	
 	}
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/c", method = RequestMethod.GET)
 	public String listCaissiers(Model model) {
 		
 		model.addAttribute("listeCaissiers", caissierRepository.findAll());
 		return "lesCaissiers";
 	}
 	
-	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	@RequestMapping(value = "/deleteCaissier", method = RequestMethod.GET)
 	public String deleteCaissier(@RequestParam("id") Long id, Model model) {
 		
 		caissierRepository.delete(id);
@@ -47,8 +47,8 @@ public class CaissierController {
 		return "redirect:/";
 	}
 	
-	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public String editForm(@RequestParam("id") Long id, Model model) {
+	@RequestMapping(value = "/editCaissier", method = RequestMethod.GET)
+	public String editFormCaissier(@RequestParam("id") Long id, Model model) {
 		
 		model.addAttribute("caissier", caissierRepository.findOne(id));
 		return "formCaissiers";
@@ -59,8 +59,8 @@ public class CaissierController {
 		return "AdminHello";
 	}
 	
-	@RequestMapping(value = "/edit", method = RequestMethod.POST)
-	public String editPost(@ModelAttribute Caissier caissier, Model model) {
+	@RequestMapping(value = "/editCaissier", method = RequestMethod.POST)
+	public String editPostCaissier(@ModelAttribute Caissier caissier, Model model) {
 		caissierRepository.save(caissier);
 		return "redirect:/"; 
 	}

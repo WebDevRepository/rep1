@@ -48,7 +48,7 @@ public class ProductController {
 		return "list";
 	}
 	
-	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	@RequestMapping(value = "/deleteProduct", method = RequestMethod.GET)
 	public String deleteProduct(@RequestParam("id") Long id, Model model) {
 		
 		productRepository.delete(id);
@@ -63,8 +63,8 @@ public class ProductController {
 		return "create";
 	}
 	
-	@RequestMapping(value = "/edit", method = RequestMethod.POST)
-	public String editPost(@ModelAttribute Product product, Model model) {
+	@RequestMapping(value = "/editProduct", method = RequestMethod.POST)
+	public String editPostProduct(@ModelAttribute Product product, Model model) {
 		productRepository.save(product);
 		return "redirect:/";
 	}

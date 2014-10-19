@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>List</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"></link>
+
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+   
+</head>
+<body>
+    <p>Vous êtes connecte en tant que : <strong th:text="${session.admin}"></strong></p>
+    <a href="/caissiers">Enregistrer un nouveau caissier</a>
+    
+   <table class="table table-striped">
+   <th>Nom</th><th>Prenom</th><th>Age</th><th>Adresse</th><th>Email</th>
+   
+<tr th:each="cc: ${listeCaissiers}">
+<td th:text="${{cc.nom}}"></td>
+<td th:text="${{cc.prenom}}"></td>
+<td th:text="${{cc.age}}"></td>
+<td th:text="${{cc.adresse}}"></td>
+<td th:text="${{cc.email}}"></td>
+<td><span><a th:href="@{/editCaissier(id=${cc.id})}">edit</a></span></td>
+<td><span><a th:href="@{/deleteCaissier(id=${cc.id})}">delete</a></span></td> 
+
+
+</tr>
+</table>
+
+<span><a th:href="@{/GoToAdminHello}">Retourner à l'accueil</a></span>
+</body>
+</html>

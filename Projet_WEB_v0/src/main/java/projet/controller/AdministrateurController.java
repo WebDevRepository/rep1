@@ -39,11 +39,7 @@ public class AdministrateurController {
 		
 	}
 	
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String AdminSecurity(Administrateur administrateur,HttpSession session) {
-		session.removeAttribute("admin");
-		return "AccueilAdmin";
-	}
+	
 	
 	@RequestMapping(value="/signin", method=RequestMethod.POST)
 	public String signinAdmin(@ModelAttribute Administrateur administrateur,HttpSession session)

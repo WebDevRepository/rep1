@@ -28,25 +28,22 @@ public class Application {
 	        AdministrateurRepository admRepository=context.getBean(AdministrateurRepository.class);
 	        
 	        System.out.println("Sauvegarde en cours ...");
-	        clientRepository.save(new Client("imad","boussouf","constantine"));
-	        clientRepository.save(new Client("tedj", "ammar","tripoli"));
-	        clientRepository.save(new Client("elmourabit", "anas","rabat"));
-	        clientRepository.save(new Client("ted", "bob","eljadida"));
+	      
 	        
 	        
 	        admRepository.save(new Administrateur("elf@gmail.com","elfelf"));
-
+	        admRepository.save(new Administrateur("anas@gmail.com","anas"));
 	        
-	        List<Client> listeClients = (List<Client>) clientRepository.findAll();
-	        System.out.println("Affichage de nos clients");
+//	        List<Client> listeClients = (List<Client>) clientRepository.findAll();
+//	        System.out.println("Affichage de nos clients");
 	        
-	       System.out.println("Nom         "+"Prenom          "+"Ville          ");
-	       for(Client c : listeClients) 
-	       {
-	    	   System.out.print(""+c.getNom()); System.out.print("         "+c.getPrenom());System.out.print("        "+c.getVille());
-	           System.out.print("\n");
-	       }
-	        
+//	       System.out.println("Nom         "+"Prenom          "+"Ville          ");
+//	       for(Client c : listeClients) 
+//	       {
+//	    	   System.out.print(""+c.getNom()); System.out.print("         "+c.getPrenom());System.out.print("        "+c.getVille());
+//	           System.out.print("\n");
+//	       }
+//	        
 	        
 	        
 	        

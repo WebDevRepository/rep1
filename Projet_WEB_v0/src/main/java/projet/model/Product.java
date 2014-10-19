@@ -17,6 +17,8 @@ public class Product {
 	private long id = -1;
 	private String name;
 	private String description;
+	private long price;
+	
 	public String getDescription() {
 		return description;
 	}
@@ -29,7 +31,7 @@ public class Product {
 	public void setPrice(long price) {
 		this.price = price;
 	}
-	private long price;
+	
 	
 	public long getId() {
 		return id;

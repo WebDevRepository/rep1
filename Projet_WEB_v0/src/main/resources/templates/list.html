@@ -44,12 +44,12 @@
       </ul>
       <form class="navbar-form navbar-left" role="search">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search"></input>
+          <input type="text" class="form-control" placeholder="Chercher"></input>
         </div>
         <button type="submit" class="btn btn-default">Entrer</button>
       </form>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Link</a></li>
+<!--         <li><a href="#">Link</a></li> -->
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Compte <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
@@ -65,20 +65,135 @@
   </div><!-- /.container-fluid -->
 </nav>
 
-    <h1> BIENVENUE ! </h1>
+    <h4> Bienvenue dans notre point de vente : </h4>
     
-    <a href="/create"> > Ajouter un nouveau produit : </a>
     
+    
+<div class="panel panel-default">
+  <a href="/create"> > Ajouter un nouveau produit : </a>
+  <div class="panel-heading">Liste des produits</div>
+ 
 
-    <ul class="list-group">
-    	<li class="list-group-item list-group-item-success" th:each="product : ${products}" >
-    	
-    		<span th:text="${product.name}"></span>
+<!--   <table class="table" th:each="product : ${products}"> -->
+   
+<!--    <p th:text="${product.name}"></p> -->
+<!--     		<p th:text="${product.description}"></p> -->
+<!--     		<p th:text="${product.price}"></p> -->
     		
-    		<span class="label label-success" ><a th:href="@{/edit(id=${product.id})}">edit</a></span>
-    		<span class="label label-danger"><a th:href="@{/delete(id=${product.id})}">delete</a></span>
+<!--     		<p class="label label-success" ><a th:href="@{/edit(id=${product.id})}">edit</a></p> -->
+<!--     		<p class="label label-danger"><a th:href="@{/delete(id=${product.id})}">delete</a></p> -->
+  
+<!--   </table> -->
+</div>
+
+<!--     <ul class="list-group"> -->
+<!--     	<li class="list-group-item list-group-item-success" th:each="product : ${products}" > -->
+    	
+<!--     		<span th:text="${product.name}"></span> -->
+<!--     		<span th:text="${product.description}"></span> -->
+<!--     		<span th:text="${product.price}"></span> -->
+    		
+<!--     		<span class="label label-success" ><a th:href="@{/edit(id=${product.id})}">edit</a></span> -->
+<!--     		<span class="label label-danger"><a th:href="@{/delete(id=${product.id})}">delete</a></span> -->
     		 
-    	</li>
-    </ul>
+<!--     	</li> -->
+<!--     </ul> -->
+<div class="container"> 
+    
+    <div class="row"> 
+    <div class="col-xs-12 col-sm-10 col-md-6"> 
+
+        <!-- exemple de tableaux 
+            table-bordered : ajoute des bordures 
+            table-striped : change l'arrière plan d'une ligne sur deux
+            table-hover : effet au survol de la ligne avec la souris
+            table-responsive : ajoute des barres défilment si nécessaire -->
+        <table class="table table-bordered table-striped table-hover"> 
+        
+        <!-- le titre du tableau -->
+        <thead> 
+          <tr> 
+          <td>#Id</td> 
+          <td>Nom</td> 
+          <td>Description</td>
+          <td>Prix</td>
+          
+          </tr> 
+        </thead>
+        
+
+        <!-- les éléments du tableau -->
+        <tbody> 
+        
+          <tr> 
+          <td class="success">123</td> 
+          <td>Ananas</td> 
+          <td>Fruit</td>
+          <td>123 E</td>
+          </tr> 
+          
+          <tr th:each="product : ${products}"> 
+          
+          <td class="success" th:text="${product.id}"></td>
+          <td th:text="${product.name}"></td>
+          <td th:text="${product.description}"></td>
+          <td class="success" th:text="${product.price}"></td>
+         <td> <span class="label label-success">  <a th:href="@{/edit(id=${product.id})}">edit</a></span></td>
+    	 <td> <span class="label label-danger"> <a th:href="@{/delete(id=${product.id})}">delete</a></span></td>
+          
+          </tr> 
+
+        </tbody> 
+
+        </table>
+
+
+
+        <!-- table-condensed : padding de 5 pixels -->
+<!--         <table class="table table-condensed">  -->
+        
+<!--         le titre du tableau -->
+<!--         <thead>  -->
+<!--           <tr>  -->
+<!--           <td>Identifiant</td>  -->
+<!--           <td>Formation</td>  -->
+<!--           <td>Durée</td>  -->
+<!--           </tr>  -->
+<!--         </thead> -->
+        
+
+<!--         les éléments du tableau -->
+<!--         <tbody>  -->
+<!--           <tr>  -->
+<!--           <td>js</td>  -->
+<!--           <td class="active">JavaScript Facile</td>  -->
+<!--           <td>6 mois</td>  -->
+<!--           </tr>  -->
+
+<!--           <tr>  -->
+<!--           <td>php</td>  -->
+<!--           <td>PHP Facile</td>  -->
+<!--           <td>4 mois</td>  -->
+<!--           </tr>  -->
+
+<!--           <tr class="danger">  -->
+<!--           <td>css</td>  -->
+<!--           <td>CSS3</td>  -->
+<!--           <td>CSS Facile</td>  -->
+<!--           </tr>  -->
+
+<!--           <tr>  -->
+<!--           <td class="warning">html</td>  -->
+<!--           <td>HTML5</td>  -->
+<!--           <td>HTML Facile</td>  -->
+<!--           </tr>  -->
+<!--         </tbody>  -->
+
+<!--         </table> -->
+    </div> 
+    </div> 
+</div> 
+
 </body>
+
 </html>

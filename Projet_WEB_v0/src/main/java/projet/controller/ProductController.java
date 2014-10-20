@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import projet.model.Administrateur;
+
 import projet.model.Product;
 import projet.repository.ProductRepository;
 
@@ -24,27 +24,27 @@ public class ProductController {
 	
 	
 	@RequestMapping(value = "/ficheProduit", method = RequestMethod.GET)
-	public String createForm(Model model) {
+	public String createFormP(Model model) {
 		model.addAttribute("product", new Product());
 		return "ficheProduit";
 	}
 	
 	@RequestMapping(value = "/ficheProduit", method = RequestMethod.POST)
-	public String submitForm(@ModelAttribute Product product, Model model) {
+	public String submitFicheP(@ModelAttribute Product product, Model model) {
 		
 		productRepository.save(product);
 		
 		return "redirect:/";
 	}
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String listProducts(Model model) {
+	@RequestMapping(value = "/p", method = RequestMethod.GET)
+	public String listeProducts(Model model) {
 		
 		model.addAttribute("products", productRepository.findAll());
 		return "listProduits";
 	}
 	
-	@RequestMapping(value = "/deleteProduct", method = RequestMethod.GET)
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public String deleteProduct(@RequestParam("id") Long id, Model model) {
 		
 		productRepository.delete(id);
@@ -59,7 +59,7 @@ public class ProductController {
 		return "ficheProduit";
 	}
 	
-	@RequestMapping(value = "/editProduct", method = RequestMethod.POST)
+	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	public String editPostProduct(@ModelAttribute Product product, Model model) {
 		productRepository.save(product);
 		return "redirect:/";

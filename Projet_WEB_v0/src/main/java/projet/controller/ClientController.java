@@ -8,11 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import projet.model.Administrateur;
+
 import projet.model.Client;
-import projet.model.Product;
+
 import projet.repository.ClientRepository;
-import projet.repository.ProductRepository;
 
 
 
@@ -26,7 +25,7 @@ public class ClientController {
 	
 	
 	@RequestMapping(value = "/ficheClient", method = RequestMethod.GET)
-	public String createForm(Model model) {
+	public String createClient(Model model) {
 		model.addAttribute("client", new Client());
 		return "ficheClient";
 	}
@@ -43,26 +42,26 @@ public class ClientController {
 	public String listeClients(Model model) {
 		
 		model.addAttribute("clients", clientRepository.findAll());
-		return "listProduits";
+		return "listClients";
 	}
 	
-	@RequestMapping(value = "/deleteClient", method = RequestMethod.GET)
+	@RequestMapping(value = "/deleteC", method = RequestMethod.GET)
 	public String deleteClient(@RequestParam("id") Long id, Model model) {
 		
 		clientRepository.delete(id);
 		
-		return "listProduits";
+		return "listClients";
 	}
 	
-	@RequestMapping(value = "/editClient", method = RequestMethod.GET)
+	@RequestMapping(value = "/editC", method = RequestMethod.GET)
 	public String editClient(@RequestParam("id") Long id, Model model) {
 		
 		model.addAttribute("client", clientRepository.findOne(id));
 		return "ficheClient";
 	}
 	
-	@RequestMapping(value = "/editClient", method = RequestMethod.POST)
-	public String editPostProduct(@ModelAttribute Client client, Model model) {
+	@RequestMapping(value = "/editC", method = RequestMethod.POST)
+	public String editPostClient(@ModelAttribute Client client, Model model) {
 		clientRepository.save(client);
 		return "redirect:/";
 	}

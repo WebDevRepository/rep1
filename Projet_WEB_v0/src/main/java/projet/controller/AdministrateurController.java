@@ -77,10 +77,16 @@ public class AdministrateurController {
 	
 	
 	
-	@RequestMapping(value="/list", method=RequestMethod.GET)
+	@RequestMapping(value="/listProduits", method=RequestMethod.GET)
 	public String loadProduits()
 	{
-		return "list";	
+		return "listProduits";	
+	}
+	
+	@RequestMapping(value="/listClients", method=RequestMethod.GET)
+	public String loadClients()
+	{
+		return "listClients";	
 	}
 	
 	@RequestMapping(value="/signout", method=RequestMethod.GET)

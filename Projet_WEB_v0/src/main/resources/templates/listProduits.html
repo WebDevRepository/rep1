@@ -28,7 +28,7 @@
       <ul class="nav navbar-nav">
         <li class="active"><a href="/listProduits">Produits</a></li>
         <li><a href="/listClients">Clients</a></li>
-        <li><a href="#">Employés</a></li>
+        <li><a href="/lesCaissiers">Employés</a></li>
 <!--         <li class="dropdown"> -->
 <!--           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a> -->
 <!--           <ul class="dropdown-menu" role="menu"> -->
@@ -125,8 +125,8 @@
           <td th:text="${product.name}"></td>
           <td th:text="${product.description}"></td>
           <td class="success" th:text="${product.price}"></td>
-         <td> <span class="label label-success">  <a th:href="@{/editProduct(id=${product.id})}">edit</a></span></td>
-    	 <td> <span class="label label-danger"> <a th:href="@{/deleteProduct(id=${product.id})}">delete</a></span></td>
+         <td> <span class="label label-success">  <a th:href="@{/edit(id=${product.id})}">edit</a></span></td>
+    	 <td> <span class="label label-danger"> <a th:href="@{/delete(id=${product.id})}">delete</a></span></td>
           
           </tr> 
 

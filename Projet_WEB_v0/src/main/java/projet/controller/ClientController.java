@@ -8,61 +8,63 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import projet.model.Caissier;
-import projet.repository.CaissierRepository;
+import projet.model.Administrateur;
+import projet.model.Client;
+import projet.model.Product;
+import projet.repository.ClientRepository;
+import projet.repository.ProductRepository;
+
+
 
 
 @Controller
 public class ClientController {
 	
 	@Autowired
-	CaissierRepository caissierRepository;
+	private ClientRepository clientRepository;
 	
 	
-	@RequestMapping(value="/clients", method=RequestMethod.GET)
-	public String loadCaissiers(Caissier caissier)
-	{
-		return "listClients";	
+	
+	@RequestMapping(value = "/ficheClient", method = RequestMethod.GET)
+	public String createForm(Model model) {
+		model.addAttribute("client", new Client());
+		return "ficheClient";
 	}
 	
-	@RequestMapping(value="/clients", method=RequestMethod.POST)
-	public String saveCaissier(@ModelAttribute Caissier caissier)
-	{
-		caissierRepository.save(caissier);
-		return "redirect:/c";	
-	}
-	
-	@RequestMapping(value = "/c", method = RequestMethod.GET)
-	public String listCaissiers(Model model) {
+	@RequestMapping(value = "/ficheClient", method = RequestMethod.POST)
+	public String ajoutClient(@ModelAttribute Client client, Model model) {
 		
-		model.addAttribute("listeCaissiers", caissierRepository.findAll());
-		return "listClients";
-	}
-	
-	@RequestMapping(value = "/deleteCaissier", method = RequestMethod.GET)
-	public String deleteCaissier(@RequestParam("id") Long id, Model model) {
-		
-		caissierRepository.delete(id);
+		clientRepository.save(client);
 		
 		return "redirect:/";
 	}
 	
-	@RequestMapping(value = "/editCaissier", method = RequestMethod.GET)
-	public String editFormCaissier(@RequestParam("id") Long id, Model model) {
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String listeClients(Model model) {
 		
-		model.addAttribute("caissier", caissierRepository.findOne(id));
-		return "formClient";
+		model.addAttribute("clients", clientRepository.findAll());
+		return "listProduits";
 	}
 	
-	@RequestMapping(value ="/GoToAdminHello", method = RequestMethod.GET)
-	public String adminAccueil(Model model) {
-		return "AdminHello";
+	@RequestMapping(value = "/deleteClient", method = RequestMethod.GET)
+	public String deleteClient(@RequestParam("id") Long id, Model model) {
+		
+		clientRepository.delete(id);
+		
+		return "listProduits";
 	}
 	
-	@RequestMapping(value = "/editCaissier", method = RequestMethod.POST)
-	public String editPostCaissier(@ModelAttribute Caissier caissier, Model model) {
-		caissierRepository.save(caissier);
-		return "redirect:/"; 
+	@RequestMapping(value = "/editClient", method = RequestMethod.GET)
+	public String editClient(@RequestParam("id") Long id, Model model) {
+		
+		model.addAttribute("client", clientRepository.findOne(id));
+		return "ficheClient";
 	}
-
+	
+	@RequestMapping(value = "/editClient", method = RequestMethod.POST)
+	public String editPostProduct(@ModelAttribute Client client, Model model) {
+		clientRepository.save(client);
+		return "redirect:/";
+	}
+	
 }

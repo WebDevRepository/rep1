@@ -23,13 +23,13 @@ public class ProductController {
 	
 	
 	
-	@RequestMapping(value = "/create", method = RequestMethod.GET)
+	@RequestMapping(value = "/ficheProduit", method = RequestMethod.GET)
 	public String createForm(Model model) {
 		model.addAttribute("product", new Product());
-		return "create";
+		return "ficheProduit";
 	}
 	
-	@RequestMapping(value = "/create", method = RequestMethod.POST)
+	@RequestMapping(value = "/ficheProduit", method = RequestMethod.POST)
 	public String submitForm(@ModelAttribute Product product, Model model) {
 		
 		productRepository.save(product);
@@ -41,7 +41,7 @@ public class ProductController {
 	public String listProducts(Model model) {
 		
 		model.addAttribute("products", productRepository.findAll());
-		return "list";
+		return "listProduits";
 	}
 	
 	@RequestMapping(value = "/deleteProduct", method = RequestMethod.GET)
@@ -49,14 +49,14 @@ public class ProductController {
 		
 		productRepository.delete(id);
 		
-		return "form";
+		return "listProduits";
 	}
 	
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String editForm(@RequestParam("id") Long id, Model model) {
 		
 		model.addAttribute("product", productRepository.findOne(id));
-		return "create";
+		return "ficheProduit";
 	}
 	
 	@RequestMapping(value = "/editProduct", method = RequestMethod.POST)

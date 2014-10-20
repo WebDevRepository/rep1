@@ -4,58 +4,71 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class Client {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long id;
-	private String nom,prenom,ville;
+	private Long id;
+	private String nom;
+	private String prenom;
+	private int age;
+	private String adresse;
+	private String email;
+	private String mdp;
 	
-	public Client() {}
 	
-    public Client(String nom,String prenom,String ville) {
-    	this.nom=nom;
-    	this.prenom=prenom;
-    	this.ville=ville;
-    }
-    
-    @Override
-    public String toString() {
-        return String.format(
-                "Customer[id=%d, firstName='%s', lastName='%s']",
-                id, nom, prenom);
-    }
-
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public String getNom() {
 		return nom;
 	}
-
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-
 	public String getPrenom() {
 		return prenom;
 	}
-
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
-
-	public String getVille() {
-		return ville;
+	public int getAge() {
+		return age;
 	}
-
-	public void setVille(String ville) {
-		this.ville = ville;
+	public void setAge(int age) {
+		this.age = age;
 	}
-    
-    
-    
+	public String getAdresse() {
+		return adresse;
+	}
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getMdp() {
+		return mdp;
+	}
+	public void setMdp(String mdp) {
+		this.mdp = mdp;
+	}
+	
 	
 	
 	
 	
 
 }
+

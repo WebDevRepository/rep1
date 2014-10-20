@@ -26,8 +26,8 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Produits</a></li>
-        <li><a href="#">Clients</a></li>
+        <li class="active"><a href="/listProduits">Produits</a></li>
+        <li><a href="/listClients">Clients</a></li>
         <li><a href="#">Employés</a></li>
 <!--         <li class="dropdown"> -->
 <!--           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a> -->
@@ -70,20 +70,11 @@
     
     
 <div class="panel panel-default">
-  <a href="/create"> > Ajouter un nouveau produit : </a>
+  <a href="/ficheProduit"> > Ajouter un nouveau produit : </a>
   <div class="panel-heading">Liste des produits</div>
  
 
-<!--   <table class="table" th:each="product : ${products}"> -->
-   
-<!--    <p th:text="${product.name}"></p> -->
-<!--     		<p th:text="${product.description}"></p> -->
-<!--     		<p th:text="${product.price}"></p> -->
-    		
-<!--     		<p class="label label-success" ><a th:href="@{/edit(id=${product.id})}">edit</a></p> -->
-<!--     		<p class="label label-danger"><a th:href="@{/delete(id=${product.id})}">delete</a></p> -->
-  
-<!--   </table> -->
+
 </div>
 
 <!--     <ul class="list-group"> -->
@@ -103,11 +94,7 @@
     <div class="row"> 
     <div class="col-xs-12 col-sm-10 col-md-6"> 
 
-        <!-- exemple de tableaux 
-            table-bordered : ajoute des bordures 
-            table-striped : change l'arrière plan d'une ligne sur deux
-            table-hover : effet au survol de la ligne avec la souris
-            table-responsive : ajoute des barres défilment si nécessaire -->
+     
         <table class="table table-bordered table-striped table-hover"> 
         
         <!-- le titre du tableau -->
@@ -149,47 +136,7 @@
 
 
 
-        <!-- table-condensed : padding de 5 pixels -->
-<!--         <table class="table table-condensed">  -->
-        
-<!--         le titre du tableau -->
-<!--         <thead>  -->
-<!--           <tr>  -->
-<!--           <td>Identifiant</td>  -->
-<!--           <td>Formation</td>  -->
-<!--           <td>Durée</td>  -->
-<!--           </tr>  -->
-<!--         </thead> -->
-        
-
-<!--         les éléments du tableau -->
-<!--         <tbody>  -->
-<!--           <tr>  -->
-<!--           <td>js</td>  -->
-<!--           <td class="active">JavaScript Facile</td>  -->
-<!--           <td>6 mois</td>  -->
-<!--           </tr>  -->
-
-<!--           <tr>  -->
-<!--           <td>php</td>  -->
-<!--           <td>PHP Facile</td>  -->
-<!--           <td>4 mois</td>  -->
-<!--           </tr>  -->
-
-<!--           <tr class="danger">  -->
-<!--           <td>css</td>  -->
-<!--           <td>CSS3</td>  -->
-<!--           <td>CSS Facile</td>  -->
-<!--           </tr>  -->
-
-<!--           <tr>  -->
-<!--           <td class="warning">html</td>  -->
-<!--           <td>HTML5</td>  -->
-<!--           <td>HTML Facile</td>  -->
-<!--           </tr>  -->
-<!--         </tbody>  -->
-
-<!--         </table> -->
+ 
     </div> 
     </div> 
 </div> 

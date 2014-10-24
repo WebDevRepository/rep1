@@ -7,7 +7,13 @@
     
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
  
-    
+    <style type="text/css">
+   legend { text-align: center;}
+   
+   fieldset {margin-left: 450px;}
+   
+   
+</style>
 </head>
 <body>
 <nav class="navbar navbar-default" role="navigation">
@@ -28,7 +34,7 @@
       <ul class="nav navbar-nav">
         <li class="active"><a href="/listProduits">Produits</a></li>
         <li><a href="/listClients">Clients</a></li>
-        <li><a href="#">Employés</a></li>
+        <li><a href="/lesCaissiers">Employés</a></li>
 <!--         <li class="dropdown"> -->
 <!--           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a> -->
 <!--           <ul class="dropdown-menu" role="menu"> -->
@@ -65,30 +71,22 @@
   </div><!-- /.container-fluid -->
 </nav>
 
-    <h4> Bienvenue dans notre point de vente : </h4>
-    
+    <p>Vous etes connecte en tant que : <strong th:text="${session.admin}"></strong></p>
+<form class="form-horizontal" action="#" th:object="${client}" method="post">
+<fieldset>
+
+
+<legend>Gestion des clients</legend>
+<a href="/ficheClient"> > Ajouter un nouveau client : </a>
+</fieldset>
+    </form>
     
     
 <div class="panel panel-default">
-  <a href="/ficheClient"> > Ajouter un nouveau client : </a>
+  
   <div class="panel-heading">Liste des clients</div>
  
-
-
 </div>
-
-<!--     <ul class="list-group"> -->
-<!--     	<li class="list-group-item list-group-item-success" th:each="product : ${products}" > -->
-    	
-<!--     		<span th:text="${product.name}"></span> -->
-<!--     		<span th:text="${product.description}"></span> -->
-<!--     		<span th:text="${product.price}"></span> -->
-    		
-<!--     		<span class="label label-success" ><a th:href="@{/edit(id=${product.id})}">edit</a></span> -->
-<!--     		<span class="label label-danger"><a th:href="@{/delete(id=${product.id})}">delete</a></span> -->
-    		 
-<!--     	</li> -->
-<!--     </ul> -->
 <div class="container"> 
     
     <div class="row"> 
@@ -97,27 +95,19 @@
      
         <table class="table table-bordered table-striped table-hover"> 
         
-        <!-- le titre du tableau -->
+        
         <thead> 
           <tr> 
           <td>#Id</td> 
           <td>Nom</td> 
           <td>Description</td>
-          <td>Prix</td>
+          <td>Email</td>
           
           </tr> 
         </thead>
         
-
-        <!-- les éléments du tableau -->
         <tbody> 
         
-          <tr> 
-          <td class="success">123</td> 
-          <td>Ananas</td> 
-          <td>Fruit</td>
-          <td>123 E</td>
-          </tr> 
           
           <tr th:each="client : ${clients}"> 
           

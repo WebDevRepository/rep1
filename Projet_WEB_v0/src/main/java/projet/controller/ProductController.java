@@ -26,15 +26,15 @@ public class ProductController {
 	@RequestMapping(value = "/ficheProduit", method = RequestMethod.GET)
 	public String createFormP(Model model) {
 		model.addAttribute("product", new Product());
-		return "ficheProduit";
+		return "redirect:/";
 	}
 	
-	@RequestMapping(value = "/ficheProduit", method = RequestMethod.POST)
+	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public String submitFicheP(@ModelAttribute Product product, Model model) {
 		
 		productRepository.save(product);
 		
-		return "redirect:/";
+		return "listProduits";
 	}
 	
 	@RequestMapping(value = "/p", method = RequestMethod.GET)

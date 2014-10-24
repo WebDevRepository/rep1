@@ -22,7 +22,7 @@ public class CaissierController {
 	@RequestMapping(value="/caissiers", method=RequestMethod.GET)
 	public String loadCaissiers(Caissier caissier)
 	{
-		return "formCaissiers";	
+		return "lesCaissiers";	
 	}
 	
 	@RequestMapping(value="/caissiers", method=RequestMethod.POST)

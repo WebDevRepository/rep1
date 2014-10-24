@@ -12,7 +12,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Client {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue
 	private Long id;
 	private String nom;
 	private String prenom;

@@ -34,7 +34,7 @@ public class Application {
 	        admRepository.save(new Administrateur("elf@gmail.com","elfelf"));
 	        admRepository.save(new Administrateur("anas@gmail.com","anas"));
 	        
-//	        List<Client> listeClients = (List<Client>) clientRepository.findAll();
+//	        List<Client> listClients = (List<Client>) clientRepository.findAll();
 //	        System.out.println("Affichage de nos clients");
 	        
 //	       System.out.println("Nom         "+"Prenom          "+"Ville          ");

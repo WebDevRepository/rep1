@@ -16,29 +16,95 @@
 
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
    <style type="text/css">
-   h2 { text-align: center;}
+    panel { text-align: center;}
    
-   .container { width: 400px;}
-   
-   
+   .container { width: 500px;} 
    
    
+   row {text-align:center;}
+   body { 
+  /*background: url(http://mymaplist.com/img/parallax/back.png) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-color: #444;
+    background: url(http://mymaplist.com/img/parallax/pinlayer2.png),url(http://mymaplist.com/img/parallax/pinlayer1.png),url(http://mymaplist.com/img/parallax/back.png);*/    
+ background-color: #e6e6e6;
+  -o-background-size: cover;
+  background-size: cover;
+  
+}
+/*.vertical-offset-100{
+    padding-top:100px;
+}*/
+.panel-default {
+opacity: 0.9;
+margin-top:50px;
+margin-left: 50px;
+
+}
+.form-group.last { margin-bottom:0px; }
    </style>
   
   </head>
 
   <body>
- <h2 class="form-signin-heading">Connexion administrateur</h2>
-    <div class="container">
+<!--  <h2 class="form-signin-heading">Connectez-vous :</h2> -->
+<!--     <div class="container"> -->
 
-      <form action="/signin" th:object="${administrateur}" class="form-signin" role="form" method="post">
-        <input type="email" th:field="*{email}" class="form-control" placeholder="Email address"  required="required" autofocus="autofocus"/>
-        <input type="password" th:field="*{mdp}" class="form-control" placeholder="Password" required="required"/>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-      </form>
+<!--       <form action="/signin" th:object="${administrateur}" class="form-signin" role="form" method="post"> -->
+<!--         <input type="email" th:field="*{email}" class="form-control" placeholder="Email address"  required="required" autofocus="autofocus"/> -->
+<!--         <input type="password" th:field="*{mdp}" class="form-control" placeholder="Password" required="required"/> -->
+<!--         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button> -->
+<!--       </form> -->
 
-    </div> 
-  
+<!--     </div>  -->
+
+  <div class="row">
+        <div class="col-md-4 col-md-offset-7">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <span class="glyphicon glyphicon-lock"></span> Connexion</div>
+                <div class="panel-body">
+                    <form action="/signin" th:object="${administrateur}" class="form-horizontal" role="form" method="post">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">
+                            Email</label>
+                        <div class="col-sm-9">
+                            <input type="email" th:field="*{email}" class="form-control" id="inputEmail3" placeholder="Email" required="required"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-3 control-label">
+                            Password</label>
+                        <div class="col-sm-9">
+                            <input type="password" th:field="*{mdp}" class="form-control" id="inputPassword3" placeholder="Mot de passe" required="required"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-9">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox"/>
+                                    Mémoriser
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group last">
+                        <div class="col-sm-offset-3 col-sm-9">
+                            <button type="submit" class="btn btn-success btn-sm">
+                                Sign in</button>
+                                 <button type="reset" class="btn btn-default btn-sm">
+                                Reset</button>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+                <div class="panel-footer">
+                    zone réservée <a href="http://www.jquery2dotnet.com"> Admin</a></div>
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>

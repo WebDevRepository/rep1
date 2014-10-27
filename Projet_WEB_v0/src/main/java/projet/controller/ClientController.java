@@ -1,5 +1,10 @@
 package projet.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 import projet.model.Client;
-
 import projet.repository.ClientRepository;
 
 
@@ -24,21 +28,41 @@ public class ClientController {
 	
 	
 	
+	
+	
 	@RequestMapping(value = "/ficheClient", method = RequestMethod.GET)
 	public String createClient(Model model) {
 		model.addAttribute("client", new Client());
 		return "ficheClient";
 	}
 	
+	
 	@RequestMapping(value = "/ficheClient", method = RequestMethod.POST)
+    public String ClientSubmit(@ModelAttribute Client client,HttpSession session, Model model){
+		
+		List<Client> panier = (List<Client>)session.getAttribute("panier");
+		
+		if(panier == null)
+			
+			panier = new ArrayList<Client>();
+		
+		panier.add(client);
+		
+		session.setAttribute("panier",panier);
+		clientRepository.save(client);
+		return "redirect:/i";
+		
+	}
+	
+	/*@RequestMapping(value = "/ficheClient", method = RequestMethod.POST)
 	public String ajoutClient(@ModelAttribute Client client, Model model) {
 		
 		clientRepository.save(client);
 		
 		return "redirect:/";
-	}
+	}*/
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/i", method = RequestMethod.GET)
 	public String listeClients(Model model) {
 		
 		model.addAttribute("clients", clientRepository.findAll());

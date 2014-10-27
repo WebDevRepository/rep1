@@ -2,6 +2,7 @@ package projet.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 
@@ -13,11 +14,11 @@ import javax.persistence.Id;
 public class Product {
 	
 	@Id
-	@GeneratedValue
-	private long id = -1;
-	private String name;
-	private String description;
-	private long price;
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	public long id;
+	public String name;
+	public String description;
+	public long price;
 	
 	public String getDescription() {
 		return description;

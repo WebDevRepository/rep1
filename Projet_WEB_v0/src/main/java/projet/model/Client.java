@@ -12,14 +12,14 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Client {
 	
 	@Id
-	@GeneratedValue
-	private Long id;
-	private String nom;
-	private String prenom;
-	private int age;
-	private String adresse;
-	private String email;
-	private String mdp;
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	public Long id;
+	public String nom;
+	public String prenom;
+	public int age;
+	public String adresse;
+	public String email;
+	public String mdp;
 	
 	
 	public Long getId() {

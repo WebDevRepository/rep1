@@ -9,7 +9,13 @@
     <title>Liste des Clients</title>
     
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
- 
+ <style type="text/css">
+   legend { text-align: center;}
+   
+   fieldset {margin-left: 450px;}
+   
+   
+</style>
 <!--     <style type="text/css"> 
 .bs-wizard {margin-top: 40px;}
 
@@ -98,15 +104,15 @@
 
 
 <legend>Gestion des clients</legend>
-<a href="/ficheClient"> > Ajouter un nouveau client : </a>
+
 </fieldset>
    
     
     
 <div class="panel panel-default">
   
-  <div class="panel-heading">Liste des clients</div>
- 
+<div class="panel-heading"><strong>Liste des clients</strong></div>
+ <a href="/ficheClient"> > Ajouter un nouveau client : </a>
 </div>
 <div class="container"> 
     
@@ -130,12 +136,12 @@
         <tbody> 
         
           
-          <tr th:each="client : ${clients}"> 
+          <tr th:each="client : ${session.panier}"> 
           
           <td class="success" th:text="${client.id}"></td>
           <td th:text="${client.nom}"></td>
           <td th:text="${client.prenom}"></td>
-          <td class="success" th:text="${client.age}"></td>
+          <td class="success" th:text="${client.email}"></td>
           
          <td> <span class="label label-success">  <a th:href="@{/editC(id=${client.id})}">edit</a></span></td>
     	 <td> <span class="label label-danger"> <a th:href="@{/deleteC(id=${client.id})}">delete</a></span></td>

@@ -74,13 +74,13 @@
 
 </fieldset>
     </form>
-    <a href="/ficheProduit"> > Ajouter un nouveau produit : </a>
+    
     
 <div class="panel panel-default">
   
-  <div class="panel-heading">Liste des produits</div>
+  <div class="panel-heading"><strong>Liste des produits</strong></div>
  
-
+<a href="/ficheProduit"> > Ajouter un nouveau produit : </a>
 
 </div>
 
@@ -119,14 +119,8 @@
         <!-- les éléments du tableau -->
         <tbody> 
         
-          <tr> 
-          <td class="success">123</td> 
-          <td>Ananas</td> 
-          <td>Fruit</td>
-          <td>123 E</td>
-          </tr> 
           
-          <tr th:each="product : ${products}"> 
+          <tr th:each="product : ${session.panier}"> 
           
           <td class="success" th:text="${product.id}"></td>
           <td th:text="${product.name}"></td>

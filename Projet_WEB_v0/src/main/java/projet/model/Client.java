@@ -13,7 +13,7 @@ public class Client {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	public Long id;
+	private long id;
 	public String nom;
 	public String prenom;
 	public int age;

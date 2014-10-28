@@ -9,13 +9,7 @@
     <title>Liste des Clients</title>
     
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
- <style type="text/css">
-   legend { text-align: center;}
-   
-   fieldset {margin-left: 450px;}
-   
-   
-</style>
+
 <!--     <style type="text/css"> 
 .bs-wizard {margin-top: 40px;}
 
@@ -56,7 +50,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Projet</a>
+      <a class="navbar-brand" href="#">Gestion d'un point de vente</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -136,7 +130,7 @@
         <tbody> 
         
           
-          <tr th:each="client : ${session.panier}"> 
+          <tr th:each="client : ${session.panierClients}"> 
           
           <td class="success" th:text="${client.id}"></td>
           <td th:text="${client.nom}"></td>

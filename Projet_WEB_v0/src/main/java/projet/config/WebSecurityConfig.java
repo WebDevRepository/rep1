@@ -1,6 +1,6 @@
 package projet.config;
-
 /*
+
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -32,8 +32,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		@Override
 		public void init(AuthenticationManagerBuilder auth) throws Exception {
-			auth.inMemoryAuthentication().withUser("user").password("password")
-					.roles("USER").and().withUser("toto").password("test").roles("ADMIN");
+			auth.inMemoryAuthentication().withUser("elf@gmail.com").password("elfelf")
+					.roles("ADMIN").and().withUser("anas@gmail.com").password("anas").roles("ADMIN");
 			
 		}
 

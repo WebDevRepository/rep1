@@ -40,7 +40,7 @@ public class ClientController {
 	@RequestMapping(value = "/ficheClient", method = RequestMethod.POST)
     public String ClientSubmit(@ModelAttribute Client client,HttpSession session, Model model){
 		
-		List<Client> panier = (List<Client>)session.getAttribute("panier");
+		List<Client> panier = (List<Client>)session.getAttribute("panierClients");
 		
 		if(panier == null)
 			
@@ -48,7 +48,7 @@ public class ClientController {
 		
 		panier.add(client);
 		
-		session.setAttribute("panier",panier);
+		session.setAttribute("panierClients",panier);
 		clientRepository.save(client);
 		return "redirect:/i";
 		

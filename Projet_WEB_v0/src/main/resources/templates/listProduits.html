@@ -6,13 +6,7 @@
     <title>Gestion des produits</title>
     
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
- <style type="text/css">
-   legend { text-align: center;}
-   
-   fieldset {margin-left: 450px;}
-   
-   
-</style>
+
    
 </head>
 <body>
@@ -28,7 +22,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Projet</a>
+      <a class="navbar-brand" href="#">Gestion d'un point de vente</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -120,14 +114,14 @@
         <tbody> 
         
           
-          <tr th:each="product : ${session.panier}"> 
+          <tr th:each="prod : ${session.panierProduits}"> 
           
           <td class="success" th:text="${product.id}"></td>
-          <td th:text="${product.name}"></td>
-          <td th:text="${product.description}"></td>
-          <td class="success" th:text="${product.price}"></td>
-         <td> <span class="label label-success">  <a th:href="@{/edit(id=${product.id})}">edit</a></span></td>
-    	 <td> <span class="label label-danger"> <a th:href="@{/delete(id=${product.id})}">delete</a></span></td>
+          <td th:text="${prod.name}"></td>
+          <td th:text="${prod.description}"></td>
+          <td class="success" th:text="${prod.price}"></td>
+         <td> <span class="label label-success">  <a th:href="@{/edit(id=${prod.id})}">edit</a></span></td>
+    	 <td> <span class="label label-danger"> <a th:href="@{/delete(id=${prod.id})}">delete</a></span></td>
           
           </tr> 
 

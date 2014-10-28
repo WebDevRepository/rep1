@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import projet.model.Administrateur;
 import projet.model.Caissier;
+import projet.model.Client;
+import projet.model.Product;
 import projet.repository.AdministrateurRepository;
 
 
@@ -78,13 +80,13 @@ public class AdministrateurController {
 	
 	
 	@RequestMapping(value="/listProduits", method=RequestMethod.GET)
-	public String loadProduits()
+	public String loadProduits(Product product)
 	{
 		return "listProduits";	
 	}
 	
 	@RequestMapping(value="/listClients", method=RequestMethod.GET)
-	public String loadClients()
+	public String loadClients(Client client)
 	{
 		return "listClients";	
 	}

@@ -41,7 +41,7 @@ public class ProductController {
 	@RequestMapping(value = "/ficheProduit", method = RequestMethod.POST)
     public String prodSubmit(@ModelAttribute Product product,HttpSession session, Model model){
 		
-		List<Product> panier = (List<Product>)session.getAttribute("panier");
+		List<Product> panier = (List<Product>)session.getAttribute("panierProduits");
 		
 		if(panier == null)
 			
@@ -49,7 +49,7 @@ public class ProductController {
 		
 		panier.add(product);
 		
-		session.setAttribute("panier",panier);
+		session.setAttribute("panierProduits",panier);
 		productRepository.save(product);
 		return "redirect:/p";
 		

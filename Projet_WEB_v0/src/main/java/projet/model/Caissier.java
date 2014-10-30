@@ -21,7 +21,19 @@ public class Caissier {
 	private String email;
 	private String mdp;
 	
+	public Caissier() {
+		// TODO Auto-generated constructor stub
+	}
 	
+	public Caissier(String nom, String prenom, int age,
+			String adresse, String email, String mdp) {
+		this.nom = nom;
+		this.prenom = prenom;
+		this.age = age;
+		this.adresse = adresse;
+		this.email = email;
+		this.mdp = mdp;
+	}
 	public Long getId() {
 		return id;
 	}

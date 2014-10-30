@@ -74,7 +74,7 @@ public class ClientController {
 		
 		clientRepository.delete(id);
 		
-		return "listClients";
+		return "redirect:/i";
 	}
 	
 	@RequestMapping(value = "/editC", method = RequestMethod.GET)
@@ -87,7 +87,7 @@ public class ClientController {
 	@RequestMapping(value = "/editC", method = RequestMethod.POST)
 	public String editPostClient(@ModelAttribute Client client, Model model) {
 		clientRepository.save(client);
-		return "redirect:/";
+		return "redirect:/i";
 	}
 	
 }

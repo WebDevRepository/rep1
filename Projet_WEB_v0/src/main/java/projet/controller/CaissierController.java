@@ -26,8 +26,9 @@ public class CaissierController {
 	
 	
 	@RequestMapping(value="/caissiers", method=RequestMethod.GET)
-	public String loadCaissiers(Caissier caissier)
+	public String loadCaissiers(Caissier caissier,HttpSession session)
 	{
+		session.setAttribute("panierCaissiers",caissierRepository.findAll());
 		return "lesCaissiers";	
 	}
 	
@@ -37,7 +38,7 @@ public class CaissierController {
 		return "formCaissiers";	
 	}
 	
-	@RequestMapping(value="/caissiers", method=RequestMethod.POST)
+	@RequestMapping(value="/formCaissiers", method=RequestMethod.POST)
 	public String saveCaissier(@ModelAttribute Caissier caissier,HttpSession session)
 	{
 		List<Caissier> panier = (List<Caissier>)session.getAttribute("panierCaissiers");
@@ -54,9 +55,10 @@ public class CaissierController {
 	}
 	
 	@RequestMapping(value = "/c", method = RequestMethod.GET)
-	public String listCaissiers(Model model) {
+	public String listCaissiers(Model model,HttpSession session) {
 		
-		model.addAttribute("listeCaissiers", caissierRepository.findAll());
+		session.setAttribute("panierCaissiers",caissierRepository.findAll());
+		//model.addAttribute("listeCaissiers", caissierRepository.findAll());
 		return "lesCaissiers";
 	}
 	
@@ -65,7 +67,7 @@ public class CaissierController {
 		
 		caissierRepository.delete(id);
 		
-		return "redirect:/";
+		return "redirect:/c";
 	}
 	
 	@RequestMapping(value = "/editCaissier", method = RequestMethod.GET)
@@ -83,7 +85,7 @@ public class CaissierController {
 	@RequestMapping(value = "/editCaissier", method = RequestMethod.POST)
 	public String editPostCaissier(@ModelAttribute Caissier caissier, Model model) {
 		caissierRepository.save(caissier);
-		return "redirect:/"; 
+		return "redirect:/c"; 
 	}
 
 }

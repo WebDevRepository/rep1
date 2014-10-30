@@ -2,21 +2,23 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"></link>
-    
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+   
     <title>Accueil</title>
     
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
  
      <style type="text/css"> 
-.bs-wizard {margin-top: 40px;}
 
 /*Form Wizard*/
 .bs-wizard {border-bottom: solid 1px #e0e0e0; padding: 0 0 10px 0;}
 .bs-wizard > .bs-wizard-step {padding: 0; position: relative;}
 .bs-wizard > .bs-wizard-step + .bs-wizard-step {}
-.bs-wizard > .bs-wizard-step .bs-wizard-stepnum {color: #595959; font-size: 16px; margin-bottom: 5px;}
+.bs-wizard > .bs-wizard-step .bs-wizard-stepnum {color: #595959; font-size: 10px; margin-bottom: 5px;}
 .bs-wizard > .bs-wizard-step .bs-wizard-info {color: #999; font-size: 14px;}
-.bs-wizard > .bs-wizard-step > .bs-wizard-dot {position: absolute; width: 30px; height: 30px; display: block; background: #fbe8aa; top: 45px; left: 50%; margin-top: -15px; margin-left: -15px; border-radius: 50%;} 
+.bs-wizard > .bs-wizard-step > .bs-wizard-dot {position: absolute; width: 20px; height: 20px; display: block; background: #fbe8aa; top: 45px; left: 50%; margin-top: -15px; margin-left: -15px; border-radius: 50%;} 
 .bs-wizard > .bs-wizard-step > .bs-wizard-dot:after {content: ' '; width: 14px; height: 14px; background: #fbbd19; border-radius: 50px; position: absolute; top: 8px; left: 8px; } 
 .bs-wizard > .bs-wizard-step > .progress {position: relative; border-radius: 0px; height: 8px; box-shadow: none; margin: 20px 0;}
 .bs-wizard > .bs-wizard-step > .progress > .progress-bar {width:0px; box-shadow: none; background: #fbe8aa;}
@@ -33,7 +35,7 @@
    
 </style> 
 </head>
-<body>
+<body onLoad='CalculerMontantTTC()'>
 <nav class="navbar navbar-default" role="navigation">
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -128,7 +130,7 @@
         
 	</div>
 
-
+<FORM Name='Form1'>
 
 <div class="container">
     <div class="row">
@@ -136,34 +138,39 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Product</th>
-                        <th>Quantity</th>
-                        <th class="text-center">Price</th>
+                        <th>Produits</th>
+                        <th>Quantité</th>
+                        <th class="text-center">Prix</th>
                         <th class="text-center">Total</th>
                         <th> </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr th:each="product : ${session.panierProducts}">
                         <td class="col-sm-8 col-md-6">
                         <div class="media">
                             <a class="thumbnail pull-left" href="#"> <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;"/> </a>
                             <div class="media-body">
-                                <h4 class="media-heading"><a href="#">Product name</a></h4>
-                                <h5 class="media-heading"> by <a href="#">Brand name</a></h5>
+                                <h4 class="media-heading"> <a th:text="${product.name}"></a></h4>
+                                <h5 class="media-heading"> by <a th:text="${product.description}"></a></h5>
                                 <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
                             </div>
                         </div></td>
+                        
                         <td class="col-sm-1 col-md-1" style="text-align: center">
-                        <input type="email" class="form-control" id="exampleInputEmail1" value="3"/>
+                        
+                        <input type="text" class="form-control" Name="ht" onKeyUp="CalculerMontantTTC()" Value="1"/>
                         </td>
-                        <td class="col-sm-1 col-md-1 text-center"><strong>$4.87</strong></td>
-                        <td class="col-sm-1 col-md-1 text-center"><strong>$14.61</strong></td>
+                        <td class="col-sm-1 col-md-1 text-center"><input class="form-control" th:value="${product.price}" type="text" name="tva"/></td>
+                        <td class="col-sm-1 col-md-1 text-center"><input class="form-control" type="text"  name="ttc"/></td>
+                        
                         <td class="col-sm-1 col-md-1">
                         <button type="button" class="btn btn-danger">
                             <span class="glyphicon glyphicon-remove"></span> Remove
-                        </button></td>
+                        </button>
+                        </td>
                     </tr>
+                   
                     <tr>
                         <td class="col-md-6">
                         <div class="media">
@@ -175,28 +182,31 @@
                             </div>
                         </div></td>
                         <td class="col-md-1" style="text-align: center">
-                        <input type="email" class="form-control" id="exampleInputEmail1" value="2"/>
+                        <input type="email" class="form-control" id="exampleInputEmail1" value="4.99"/>
                         </td>
-                        <td class="col-md-1 text-center"><strong>$4.99</strong></td>
-                        <td class="col-md-1 text-center"><strong>$9.98</strong></td>
+                        <td class="col-md-1 text-center" name="pu"><strong>$4.99</strong></td>
+                        <td class="col-md-1 text-center" name="pu"><strong>$9.98</strong></td>
                         <td class="col-md-1">
                         <button type="button" class="btn btn-danger">
                             <span class="glyphicon glyphicon-remove"></span> Remove
                         </button></td>
                     </tr>
-                    <tr>
-                        <td>   </td>
-                        <td>   </td>
-                        <td>   </td>
+                   
+                    <tr th:each="ol,row : *{product}" th:class="${row.odd}? 'odd'">
+        				<td th:text="${ol.product.name}">Strawberries</td>
+        				<td th:text="${ol.product.price}" class="number">3</td>
+       	 				<td th:text="${ol.product.price}" class="number">23.32</td>
+      
+                        
                         <td><h5>Subtotal</h5></td>
-                        <td class="text-right"><h5><strong>$24.59</strong></h5></td>
+                        <td class="text-right"> <input th:text="*{#aggregates.sum(product.{price * price})}"></input><h5><strong>$24.59</strong></h5></td>
                     </tr>
                     <tr>
                         <td>   </td>
                         <td>   </td>
                         <td>   </td>
                         <td><h5>Estimated shipping</h5></td>
-                        <td class="text-right"><h5><strong>$6.94</strong></h5></td>
+                        <td class="text-right" ><h5><strong>$6.94</strong></h5></td>
                     </tr>
                     <tr>
                         <td>   </td>
@@ -223,8 +233,42 @@
         </div>
     </div>
 </div>
-  <script type="text/javascript">
 
+
+
+<!-- <h2>Calcul de la TVA</h2>
+
+Montant hors taxes <input type='text' Name='ht' onKeyUp='CalculerMontantTTC()' Value='0'/>
+
+Montant TVA (19.6%) <input type ='text' Name='tva'/>
+
+ <input type ='text' Name='ttc'/> -->
+</FORM>
+
+
+ 
+
+<Script language='javascript'>
+function CalculerMontantTTC()
+{
+if (isNaN(Form1.ht.value) == true)
+{
+alert('Merci de saisir un montant correct. Calcul impossible.');
+Form1.ht.value = '0';
+}
+else
+{
+	
+//Form1.tva.value = Number(product.price) ;
+Form1.ttc.value = Number(Form1.ht.value) * Number(Form1.tva.value) ;
+}
+}
+</Script>
+
+<script type="text/javascript">
+
+	
+  
     $(document).ready(function(){
         $(".dropdown").hover(            
             function() {
@@ -238,6 +282,10 @@
         );
     });
 
+    
+    	 
    </script>
+   
+   
 </body>
 </html>

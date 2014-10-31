@@ -18,21 +18,28 @@ public class Product {
 	private long id;
 	public String name;
 	public String description;
-	public long price;
+	public String price;
 	
+	
+	public Product(String name, String description, String price) {
+		super();
+		this.name = name;
+		this.description = description;
+		this.price = price;
+	}
+	public Product(){}
 	public String getDescription() {
 		return description;
 	}
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public long getPrice() {
+	public String getPrice() {
 		return price;
 	}
-	public void setPrice(long price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
-	
 	
 	public long getId() {
 		return id;

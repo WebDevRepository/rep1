@@ -52,8 +52,8 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-slide-dropdown">
         <ul class="nav navbar-nav">
-            <li><a href="/listProduits">Produits</a></li>
-            <li><a href="/listClients">Clients</a></li>
+            <li><a href="/lProduits">Produits</a></li>
+            <li><a href="/lClients">Clients</a></li>
             <li><a href="/caissiers">Employés</a></li>
         	
         </ul>
@@ -69,8 +69,8 @@
  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><strong th:text="${session.admin}"></strong> <span class="caret"></span></a>
 
               <ul class="dropdown-menu" role="menu">
-                <li><a href="/listProduits">Gestion des produits</a></li>
-                <li><a href="/listClients">Gestion des clients</a></li>
+                <li><a href="/lProduits">Gestion des produits</a></li>
+                <li><a href="/lClients">Gestion des clients</a></li>
                 <li><a href="/caissiers">Gestion des Employés</a></li>
                 <li class="divider"></li>
                 <li><a th:action="@{/signout}" href="/login">Déconnexion</a></li>
@@ -146,7 +146,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="product : ${session.panierProducts}">
+                    <tr th:each="product : ${session.panierProduits}">
                         <td class="col-sm-8 col-md-6">
                         <div class="media">
                             <a class="thumbnail pull-left" href="#"> <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;"/> </a>
@@ -170,7 +170,6 @@
                         </button>
                         </td>
                     </tr>
-                   
                     <tr>
                         <td class="col-md-6">
                         <div class="media">

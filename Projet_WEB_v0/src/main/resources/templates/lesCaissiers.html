@@ -33,8 +33,8 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-slide-dropdown">
         <ul class="nav navbar-nav">
-            <li><a href="/listProduits">Produits</a></li>
-            <li><a href="/listClients">Clients</a></li>
+            <li><a href="/lProduits">Produits</a></li>
+            <li><a href="/lClients">Clients</a></li>
             <li><a href="/caissiers">Employés</a></li>
         	
         </ul>
@@ -50,8 +50,8 @@
  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><strong th:text="${session.admin}"></strong> <span class="caret"></span></a>
 
               <ul class="dropdown-menu" role="menu">
-                <li><a href="/listProduits">Gestion des produits</a></li>
-                <li><a href="/listClients">Gestion des clients</a></li>
+                <li><a href="/lProduits">Gestion des produits</a></li>
+                <li><a href="/lClients">Gestion des clients</a></li>
                 <li><a href="/caissiers">Gestion des Employés</a></li>
                 <li class="divider"></li>
                 <li><a th:action="@{/signout}" href="/login">Déconnexion</a></li>
@@ -66,13 +66,14 @@
 
 
 <legend>Gestion des caissiers</legend>
-<a href="/formCaissiers">  Ajouter un nouveau employé : </a>
+
 </fieldset>
 <div class="panel panel-default">
   
   <div class="panel-heading">Liste des employés</div>
  
 </div>
+<a href="/formCaissiers">  Ajouter un nouveau employé : </a>
 <div class="container"> 
     <div class="row"> 
     <div class="col-xs-12 col-sm-10 col-md-6"> 

@@ -14,14 +14,28 @@ public class Client {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
-	public String nom;
-	public String prenom;
-	public int age;
-	public String adresse;
-	public String email;
-	public String mdp;
+	private String nom;
+	private String prenom;
+	private int age;
+	private String adresse;
+	private String email;
+	private String mdp;
+	
+	public Client(){}
 	
 	
+	public Client(String nom, String prenom, int age, String adresse,
+			String email, String mdp) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.age = age;
+		this.adresse = adresse;
+		this.email = email;
+		this.mdp = mdp;
+	}
+
+
 	public Long getId() {
 		return id;
 	}

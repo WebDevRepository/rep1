@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 
+
+import projet.model.Caissier;
 import projet.model.Client;
 import projet.model.Product;
 import projet.repository.ProductRepository;
@@ -29,8 +31,14 @@ public class ProductController {
 	private ProductRepository productRepository;
 	
 	
+	@RequestMapping(value="/lProduits", method=RequestMethod.GET)
+	public String loadProducts(Product product,HttpSession session)
+	{
+		session.setAttribute("panierProduits",productRepository.findAll());
+		return "listProduits";	
+	}
 	
-	@RequestMapping(value = "/ficheProduit", method = RequestMethod.GET)
+	@RequestMapping(value = "/fProduit", method = RequestMethod.GET)
 	public String createFormP(Model model) {
 		model.addAttribute("product", new Product());
 		return "ficheProduit";
@@ -38,10 +46,10 @@ public class ProductController {
 	
 	
 	
-	@RequestMapping(value = "/ficheProduit", method = RequestMethod.POST)
+	@RequestMapping(value = "/fProduit", method = RequestMethod.POST)
     public String prodSubmit(@ModelAttribute Product product,HttpSession session, Model model){
 		
-		List<Product> panier = (List<Product>)session.getAttribute("panierProducts");
+		List<Product> panier = (List<Product>)session.getAttribute("panierProduits");
 		
 		if(panier == null)
 			
@@ -49,9 +57,9 @@ public class ProductController {
 		
 		panier.add(product);
 		
-		session.setAttribute("panierProducts",panier);
+		session.setAttribute("panierProduits",panier);
 		productRepository.save(product);
-		return "redirect:/p";
+		return "redirect:/l";
 		
 	}
 	
@@ -64,11 +72,11 @@ public class ProductController {
 		return "listProduits";
 	}*/
 	
-	@RequestMapping(value = "/p", method = RequestMethod.GET)
+	@RequestMapping(value = "/l", method = RequestMethod.GET)
 	public String listeProducts(Model model,HttpSession session) {
 		
 		//model.addAttribute("products", productRepository.findAll());
-		session.setAttribute("panierProducts",productRepository.findAll());
+		session.setAttribute("panierProduits",productRepository.findAll());
 		return "listProduits";
 	}
 	
@@ -77,7 +85,7 @@ public class ProductController {
 		
 		productRepository.delete(id);
 		
-		return "redirect:/p";
+		return "redirect:/l";
 	}
 	
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
@@ -90,7 +98,7 @@ public class ProductController {
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	public String editPostProduct(@ModelAttribute Product product, Model model) {
 		productRepository.save(product);
-		return "redirect:/p";
+		return "redirect:/l";
 	}
 	
 }

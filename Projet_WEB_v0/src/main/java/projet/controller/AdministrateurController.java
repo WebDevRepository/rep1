@@ -78,7 +78,7 @@ public class AdministrateurController {
 	}
 	
 	
-	
+	/*
 	@RequestMapping(value="/listProduits", method=RequestMethod.GET)
 	public String loadProduits(Product product)
 	{
@@ -90,7 +90,7 @@ public class AdministrateurController {
 	{
 		return "listClients";	
 	}
-	
+	*/
 	@RequestMapping(value="/signout", method=RequestMethod.GET)
 	public String DecoAdminGET(Administrateur administrateur,HttpSession session)
 	{

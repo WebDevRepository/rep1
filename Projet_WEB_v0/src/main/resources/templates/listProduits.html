@@ -26,14 +26,14 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Point de vente</a>
+      <a class="navbar-brand" href="/AdminHello">Point de vente</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-slide-dropdown">
         <ul class="nav navbar-nav">
-            <li><a href="/listProduits">Produits</a></li>
-            <li><a href="/listClients">Clients</a></li>
+            <li><a href="/lProduits">Produits</a></li>
+            <li><a href="/lClients">Clients</a></li>
             <li><a href="/caissiers">Employés</a></li>
         	
         </ul>
@@ -49,8 +49,8 @@
  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><strong th:text="${session.admin}"></strong> <span class="caret"></span></a>
 
               <ul class="dropdown-menu" role="menu">
-                <li><a href="/listProduits">Gestion des produits</a></li>
-                <li><a href="/listClients">Gestion des clients</a></li>
+                <li><a href="/lProduits">Gestion des produits</a></li>
+                <li><a href="/lClients">Gestion des clients</a></li>
                 <li><a href="/caissiers">Gestion des Employés</a></li>
                 <li class="divider"></li>
                 <li><a th:action="@{/signout}" href="/login">Déconnexion</a></li>
@@ -78,7 +78,7 @@
   
   <div class="panel-heading"><strong>Liste des produits</strong></div>
  
-<a href="/ficheProduit"> > Ajouter un nouveau produit : </a>
+<a href="/fProduit"> > Ajouter un nouveau produit : </a>
 
 </div>
 
@@ -104,6 +104,7 @@
         
         <!-- le titre du tableau -->
         <thead> 
+        
           <tr> 
           <td>#Id</td> 
           <td>Nom</td> 
@@ -118,14 +119,14 @@
         <tbody> 
         
           
-          <tr th:each="product : ${session.panierProducts}"> 
+          <tr th:each="product : ${session.panierProduits}"> 
           
           <td class="success" th:text="${product.id}"></td>
           <td th:text="${product.name}"></td>
           <td th:text="${product.description}"></td>
-          <td class="success" th:text="${product.price}">$</td>
-         <td> <span class="label label-success">  <a th:href="@{/edit(id=${product.id})}">edit</a></span></td>
-    	 <td> <span class="label label-danger"> <a th:href="@{/delete(id=${product.id})}">delete</a></span></td>
+          <td th:text="${product.price}">$</td>
+          <td> <span class="label label-success">  <a th:href="@{/edit(id=${product.id})}">edit</a></span></td>
+    	  <td> <span class="label label-danger"> <a th:href="@{/delete(id=${product.id})}">delete</a></span></td>
           
           </tr> 
 
@@ -133,9 +134,6 @@
 
         </table>
 
-
-
- 
     </div> 
     </div> 
 </div> 

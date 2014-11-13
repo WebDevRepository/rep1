@@ -42,8 +42,8 @@ public class Application {
             clientRepository.save(new Client("El","Mourabit",0, "27", "anas@gmail.com", null));
             clientRepository.save(new Client("Bob","marley",0, "99", "bob@gmail.com", null));
 
-            productRepository.save(new Product("Produit1","Description","27 E"));
-            productRepository.save(new Product("Produit2","Description","23 E"));
+            productRepository.save(new Product(0, "RGTH5","Produit1","Description","27","marque"));
+            productRepository.save(new Product(0, "REFG4","Produit2","Description","23","marque"));
 //	        List<Client> listClients = (List<Client>) clientRepository.findAll();
 //	        System.out.println("Affichage de nos clients");
 	        

@@ -106,10 +106,11 @@
         <thead> 
         
           <tr> 
-          <td>#Id</td> 
+          <td>Réference</td> 
           <td>Nom</td> 
           <td>Description</td>
           <td>Prix</td>
+          <td>Marque</td>
           
           </tr> 
         </thead>
@@ -121,10 +122,11 @@
           
           <tr th:each="product : ${session.panierProduits}"> 
           
-          <td class="success" th:text="${product.id}"></td>
+          <td class="success" th:text="${product.ref}"></td>
           <td th:text="${product.name}"></td>
           <td th:text="${product.description}"></td>
           <td th:text="${product.price}">$</td>
+          <td th:text="${product.marque}">$</td>
           <td> <span class="label label-success">  <a th:href="@{/edit(id=${product.id})}">edit</a></span></td>
     	  <td> <span class="label label-danger"> <a th:href="@{/delete(id=${product.id})}">delete</a></span></td>
           

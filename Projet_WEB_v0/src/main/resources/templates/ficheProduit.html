@@ -90,14 +90,13 @@
 <legend>Fiche Produit</legend>
 
 
+
 <div class="control-group">
-  <label class="control-label" for="textinput">Identifiant :</label>
+  <label class="control-label" for="textinput">Référence :</label>
   <div class="controls">
-    <input id="textinput" name="id" th:field="*{id}" type="text" placeholder="Identifiant" class="input-xlarge" required="required" autofocus="autofocus"/>
-    
+    <input id="textinput" name="ref" th:field="*{ref}" type="text" placeholder="Référence du produit" class="input-xlarge" required="required"/>
   </div>
 </div>
-
 
 <div class="control-group">
   <label class="control-label" for="textinput">Nom :</label>
@@ -122,6 +121,15 @@
     <input id="textinput" name="adresse" th:field="*{price}" type="text" placeholder="prix" class="input-xlarge" required="required"/>
   </div>
 </div>
+
+
+<div class="control-group">
+  <label class="control-label" for="textinput">Marque:</label>
+  <div class="controls">
+    <input id="textinput" name="marque" th:field="*{marque}" type="text" placeholder="marque du produit" class="input-xlarge" required="required"/>
+  </div>
+</div>
+
 
 
 <!-- Button -->

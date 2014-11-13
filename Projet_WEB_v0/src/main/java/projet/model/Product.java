@@ -4,8 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -16,17 +14,36 @@ public class Product {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
+	public String ref;
 	public String name;
 	public String description;
 	public String price;
+	public String marque;
 	
-	
-	public Product(String name, String description, String price) {
+	public String getRef() {
+		return ref;
+	}
+	public void setRef(String ref) {
+		this.ref = ref;
+	}
+	public Product(long id, String ref, String name, String description,
+			String price, String marque) {
 		super();
+		this.id = id;
+		this.ref = ref;
 		this.name = name;
 		this.description = description;
 		this.price = price;
+		this.marque = marque;
 	}
+	public String getMarque() {
+		return marque;
+	}
+	public void setMarque(String marque) {
+		this.marque = marque;
+	}
+	
+	
 	public Product(){}
 	public String getDescription() {
 		return description;

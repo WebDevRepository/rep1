@@ -33,6 +33,23 @@
 .bs-wizard > .bs-wizard-step.disabled a.bs-wizard-dot{ pointer-events: none; }
 /*END Form Wizard*/
    
+   .dual-list .list-group {
+            margin-top: 8px;
+        }
+
+        .list-left li, .list-right li {
+            cursor: pointer;
+        }
+
+        .list-arrows {
+            padding-top: 100px;
+        }
+
+            .list-arrows button {
+                margin-bottom: 20px;
+            }
+   
+   
 </style> 
 </head>
 <body onLoad='CalculerMontantTTC()'>
@@ -91,44 +108,71 @@
 <!-- </form> -->
 <h3> Point de vente </h3>
 <div class="container">
-		
-        
-            <div class="row bs-wizard" style="border-bottom:0;">
-                
-                <div class="col-xs-3 bs-wizard-step complete">
-                  <div class="text-center bs-wizard-stepnum">Etape 1</div>
-                  <div class="progress"><div class="progress-bar"></div></div>
-                  <a href="#" class="bs-wizard-dot"></a>
-                  <div class="bs-wizard-info text-center">Connexion</div>
+    <br />
+	<div class="row">
+
+        <div class="dual-list list-left col-md-5">
+            <div class="well text-right">
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon-search"></span>
+                            <input type="text" name="SearchDualList" class="form-control" placeholder="search" />
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="btn-group">
+                            <a class="btn btn-default selector" title="select all"><i class="glyphicon glyphicon-unchecked"></i></a>
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="col-xs-3 bs-wizard-step complete"><!-- complete -->
-                  <div class="text-center bs-wizard-stepnum">Etape 2</div>
-                  <div class="progress"><div class="progress-bar"></div></div>
-                  <a href="#" class="bs-wizard-dot"></a>
-                  <div class="bs-wizard-info text-center">Choisir le produit, remplir le panier</div>
-                </div>
-                
-                <div class="col-xs-3 bs-wizard-step active"><!-- complete -->
-                  <div class="text-center bs-wizard-stepnum">Etape 3</div>
-                  <div class="progress"><div class="progress-bar"></div></div>
-                  <a href="#" class="bs-wizard-dot"></a>
-                  <div class="bs-wizard-info text-center">Paiement </div>
-                </div>
-                
-                <div class="col-xs-3 bs-wizard-step disabled"><!-- active -->
-                  <div class="text-center bs-wizard-stepnum">Etape 4</div>
-                  <div class="progress"><div class="progress-bar"></div></div>
-                  <a href="#" class="bs-wizard-dot"></a>
-                  <div class="bs-wizard-info text-center"> Confirmation de paiement</div>
-                </div>
+                <ul class="list-group">
+                    <li class="list-group-item">bootstrap-duallist <a href="https://github.com/bbilginn/bootstrap-duallist" target="_blank">github</a></li>
+                    <li class="list-group-item">Dapibus ac facilisis in</li>
+                    <li class="list-group-item">Morbi leo risus</li>
+                    <li class="list-group-item">Porta ac consectetur ac</li>
+                    <li class="list-group-item">Vestibulum at eros</li>
+                </ul>
             </div>
-        
-        
-        
-        
-        
+        </div>
+
+        <div class="list-arrows col-md-1 text-center">
+            <button class="btn btn-default btn-sm move-left">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </button>
+
+            <button class="btn btn-default btn-sm move-right">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+            </button>
+        </div>
+
+        <div class="dual-list list-right col-md-5">
+            <div class="well">
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="btn-group">
+                            <a class="btn btn-default selector" title="select all"><i class="glyphicon glyphicon-unchecked"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <input type="text" name="SearchDualList" class="form-control" placeholder="search" />
+                            <span class="input-group-addon glyphicon glyphicon-search"></span>
+                        </div>
+                    </div>
+                </div>
+                <ul class="list-group">
+                    <li class="list-group-item">Cras justo odio</li>
+                    <li class="list-group-item">Dapibus ac facilisis in</li>
+                    <li class="list-group-item">Morbi leo risus</li>
+                    <li class="list-group-item">Porta ac consectetur ac</li>
+                    <li class="list-group-item">Vestibulum at eros</li>
+                </ul>
+            </div>
+        </div>
+
 	</div>
+</div>
 
 <FORM Name='Form1'>
 
@@ -234,7 +278,6 @@
 </div>
 
 
-
 <!-- <h2>Calcul de la TVA</h2>
 
 Montant hors taxes <input type='text' Name='ht' onKeyUp='CalculerMontantTTC()' Value='0'/>
@@ -247,7 +290,7 @@ Montant TVA (19.6%) <input type ='text' Name='tva'/>
 
  
 
-<Script language='javascript'>
+<!-- <Script language='javascript'>
 function CalculerMontantTTC()
 {
 if (isNaN(Form1.ht.value) == true)
@@ -262,11 +305,24 @@ else
 Form1.ttc.value = Number(Form1.ht.value) * Number(Form1.tva.value) ;
 }
 }
-</Script>
+</Script> -->
 
 <script type="text/javascript">
 
+function CalculerMontantTTC()
+{
+if (isNaN(Form1.ht.value) == true)
+{
+alert('Merci de saisir un montant correct. Calcul impossible.');
+Form1.ht.value = '0';
+}
+else
+{
 	
+//Form1.tva.value = Number(product.price) ;
+Form1.ttc.value = Number(Form1.ht.value) * Number(Form1.tva.value) ;
+}
+}
   
     $(document).ready(function(){
         $(".dropdown").hover(            
@@ -282,9 +338,47 @@ Form1.ttc.value = Number(Form1.ht.value) * Number(Form1.tva.value) ;
     });
 
     
+    $(function () {
+
+        $('body').on('click', '.list-group .list-group-item', function () {
+            $(this).toggleClass('active');
+        });
+        $('.list-arrows button').click(function () {
+            var $button = $(this), actives = '';
+            if ($button.hasClass('move-left')) {
+                actives = $('.list-right ul li.active');
+                actives.clone().appendTo('.list-left ul');
+                actives.remove();
+            } else if ($button.hasClass('move-right')) {
+                actives = $('.list-left ul li.active');
+                actives.clone().appendTo('.list-right ul');
+                actives.remove();
+            }
+        });
+        $('.dual-list .selector').click(function () {
+            var $checkBox = $(this);
+            if (!$checkBox.hasClass('selected')) {
+                $checkBox.addClass('selected').closest('.well').find('ul li:not(.active)').addClass('active');
+                $checkBox.children('i').removeClass('glyphicon-unchecked').addClass('glyphicon-check');
+            } else {
+                $checkBox.removeClass('selected').closest('.well').find('ul li.active').removeClass('active');
+                $checkBox.children('i').removeClass('glyphicon-check').addClass('glyphicon-unchecked');
+            }
+        });
+        $('[name="SearchDualList"]').keyup(function (e) {
+            var code = e.keyCode || e.which;
+            if (code == '9') return;
+            if (code == '27') $(this).val(null);
+            var $rows = $(this).closest('.dual-list').find('.list-group li');
+            var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+            $rows.show().filter(function () {
+                var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+                return !~text.indexOf(val);
+            }).hide();
+        });
     	 
    </script>
    
-   
+  
 </body>
 </html>

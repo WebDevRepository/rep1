@@ -18,7 +18,8 @@ public class Product {
 	public String name;
 	public String description;
 	public String price;
-	public String marque;
+	public String provenance;
+	public String categorie;
 	
 	public String getRef() {
 		return ref;
@@ -26,21 +27,28 @@ public class Product {
 	public void setRef(String ref) {
 		this.ref = ref;
 	}
+	public String getCategorie() {
+		return categorie;
+	}
+	public void setCategorie(String categorie) {
+		this.categorie = categorie;
+	}
 	public Product(long id, String ref, String name, String description,
-			String price, String marque) {
+			String price, String provenance, String categorie) {
 		super();
 		this.id = id;
 		this.ref = ref;
 		this.name = name;
 		this.description = description;
 		this.price = price;
-		this.marque = marque;
+		this.provenance = provenance;
+		this.categorie = categorie;
 	}
-	public String getMarque() {
-		return marque;
+	public String getProvenance() {
+		return provenance;
 	}
-	public void setMarque(String marque) {
-		this.marque = marque;
+	public void setProvenance(String provenance) {
+		this.provenance = provenance;
 	}
 	
 	

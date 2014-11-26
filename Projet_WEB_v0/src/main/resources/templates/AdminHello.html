@@ -67,7 +67,15 @@
 
 </script>
 
-
+<script type="text/javascript">  
+$(document).ready(function(){ 
+	
+	function CalculerMontantTTC(){
+	Form1.ttc.value = Number(Form1.qte.value) * Number(Form1.prix.value);
+    }
+});
+</script>
+	
 <script type="text/javascript">  
 
     $(document).ready(function() {
@@ -167,7 +175,7 @@
 
 <!-- </p> -->
 <!-- </form> -->
-<h3> Point de vente </h3>
+
 <div class="container">
     <br/>
 	<div class="row">
@@ -178,7 +186,7 @@
                     <div class="col-md-10">
                         <div class="input-group">
                             <span class="input-group-addon glyphicon glyphicon-search"></span>
-                            <input type="text" name="SearchDualList" class="form-control" placeholder="search" />
+                            <input type="text" name="SearchDualList" class="form-control" placeholder="Chercher un produit" />
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -187,13 +195,12 @@
                         </div>
                     </div>
                 </div>
-                <ul class="list-group">
-                    <li class="list-group-item">bootstrap-duallist <a href="https://github.com/bbilginn/bootstrap-duallist" target="_blank">github</a></li>
-                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                    <li class="list-group-item">Morbi leo risus</li>
-                    <li class="list-group-item">Porta ac consectetur ac</li>
-                    <li class="list-group-item">Vestibulum at eros</li>
+                <ul class="list-group" th:each="product : ${session.panierProduits}" >
+                    <li class="list-group-item" th:text="${product.name}"></li>
+                    
                 </ul>
+               
+                               
             </div>
         </div>
 
@@ -217,25 +224,25 @@
                     </div>
                     <div class="col-md-10">
                         <div class="input-group">
-                            <input type="text" name="SearchDualList" class="form-control" placeholder="search" />
+                            <input type="text" name="SearchDualList" class="form-control" placeholder="Chercher un produit.." />
                             <span class="input-group-addon glyphicon glyphicon-search"></span>
                         </div>
                     </div>
                 </div>
-                <ul class="list-group">
-                    <li class="list-group-item">Cras justo odio</li>
-                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                    <li class="list-group-item">Morbi leo risus</li>
-                    <li class="list-group-item">Porta ac consectetur ac</li>
-                    <li class="list-group-item">Vestibulum at eros</li>
-                </ul>
+<!--                 <ul class="list-group"> -->
+<!--                     <li class="list-group-item">Cras justo odio</li> -->
+<!--                     <li class="list-group-item">Dapibus ac facilisis in</li> -->
+<!--                     <li class="list-group-item">Morbi leo risus</li> -->
+<!--                     <li class="list-group-item">Porta ac consectetur ac</li> -->
+<!--                     <li class="list-group-item">Vestibulum at eros</li> -->
+<!--                 </ul> -->
             </div>
         </div>
 
 	</div>
 </div>
 
-<FORM Name="Form1">
+<form Name="Form1">
 
 <div class="container">
     <div class="row">
@@ -250,7 +257,7 @@
                         <th> </th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody onload="CalculerMontantTTC()">
                     <tr th:each="product : ${session.panierProduits}">
                         <td class="col-sm-8 col-md-6">
                         <div class="media">
@@ -340,58 +347,12 @@
 </div>
 
 
-<!-- <h2>Calcul de la TVA</h2>
 
-Montant hors taxes <input type='text' Name='ht' onKeyUp='CalculerMontantTTC()' Value='0'/>
-
-Montant TVA (19.6%) <input type ='text' Name='tva'/>
-
- <input type ='text' Name='ttc'/> -->
-</FORM>
+</form>
 
 
  
 
-<!-- <Script language='javascript'>
-function CalculerMontantTTC()
-{
-if (isNaN(Form1.ht.value) == true)
-{
-alert('Merci de saisir un montant correct. Calcul impossible.');
-Form1.ht.value = '0';
-}
-else
-{
-	
-//Form1.tva.value = Number(product.price) ;
-Form1.ttc.value = Number(Form1.ht.value) * Number(Form1.tva.value) ;
-}
-}
-</Script> -->
-
-
-<script type="text/javascript">  
-function CalculerMontantTTC()
-{
-if (isNaN(Form1.qte.value) == true)
-{
-alert('Merci de saisir un montant correct. Calcul impossible.');
-Form1.qte.value = '0';
-}
-else
-{
-//Form1.tva.value = (Form1.ht.value / 100) * 19.6 ;
-alert(document.forms["Form1"].elements["qte"].value);
-alert(document.forms["Form1"].elements["prix"].value);
-
-Form1.ttc.value = Number(Form1.qte.value) * Number(Form1.prix.value);
-}
-}
-</script>
-
-
  
-   
-  
 </body>
 </html>

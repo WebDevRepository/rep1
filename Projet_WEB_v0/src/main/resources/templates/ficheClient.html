@@ -90,9 +90,9 @@
 
 
 <div class="control-group">
-  <label class="control-label" for="textinput">Identifiant :</label>
+  <label class="control-label" for="textinput">Code Client :</label>
   <div class="controls">
-    <input id="textinput" name="id" th:field="*{id}" type="text" placeholder="Identifiant" class="input-xlarge" required="required" autofocus="autofocus"/>
+    <input id="textinput" name="id" th:field="*{refc}" type="text" placeholder="reference" class="input-xlarge" required="required" autofocus="autofocus"/>
     
   </div>
 </div>
@@ -108,9 +108,30 @@
 
 
 <div class="control-group">
-  <label class="control-label" for="textinput">Prenom :</label>
+  <label class="control-label" for="textinput">Prénom :</label>
   <div class="controls">
     <input id="textinput" name="prenom" th:field="*{prenom}" type="text" placeholder="Description du client" class="input-xlarge" required="required"/>
+  </div>
+</div>
+
+<div class="control-group">
+  <label class="control-label" for="textinput">Age :</label>
+  <div class="controls">
+    <input id="textinput" name="age" th:field="*{age}" type="text" placeholder="Age du client" class="input-xlarge" required="required"/>
+  </div>
+</div>
+
+<div class="control-group">
+  <label class="control-label" for="textinput">Entreprise :</label>
+  <div class="controls">
+    <input id="textinput" name="entreprise" th:field="*{entreprise}" type="text" placeholder="entreprise" class="input-xlarge" required="required"/>
+  </div>
+</div>
+
+<div class="control-group">
+  <label class="control-label" for="textinput">Adresse :</label>
+  <div class="controls">
+    <input id="textinput" name="entreprise" th:field="*{entreprise}" type="text" placeholder="entreprise" class="input-xlarge" required="required"/>
   </div>
 </div>
 
@@ -120,6 +141,7 @@
     <input id="textinput" name="email" th:field="*{email}" type="email" placeholder="votre@dresse.fr" class="input-xlarge" required="required"/>
   </div>
 </div>
+
 
 
 <!-- Button -->

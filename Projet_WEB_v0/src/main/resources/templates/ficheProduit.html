@@ -9,7 +9,12 @@
  <style type="text/css"> 
    legend { text-align: center;}
    fieldset {margin-left: 450px;}
-    
+    .special {
+    font-style: italic; 
+    font-weight: bold !important;
+    color:#bc0000 !important; 
+    background:#000;
+  }
  </style>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
@@ -101,7 +106,26 @@
 <div class="control-group">
   <label class="control-label" for="textinput">Nom :</label>
   <div class="controls">
-    <input id="textinput" name="name" th:field="*{name}" type="text" placeholder="Nom du produit" class="input-xlarge" required="required"/>
+    <select th:field="*{name}" required="required" name="name">
+     <optgroup label="Fruit" >
+      <option value="Ananas">Ananas</option>
+      <option value="Banane">Banane</option>
+      <option value="Fraise">Fraise</option>
+      <option value="Kiwi">Kiwi</option>
+    </optgroup>
+    <optgroup label="Légume">
+      <option value="Pomme de terre">Pomme de terre</option>
+      <option value="Oignon">Oignon</option>
+      <option value="Carrotes">Carrotes</option>
+    </optgroup>
+     <optgroup label="Poisson">
+      <option value="Sardine">Sardine</option>
+      <option value="Crevette">Crevette</option>
+      <option value="Saumon">Saumon</option>
+      <option value="Calamar">Calamar</option>
+      <option value="Dorade">Dorade</option>
+    </optgroup>
+  	</select>
   </div>
 </div>
 
@@ -118,27 +142,42 @@
 <div class="control-group">
   <label class="control-label" for="textinput">Prix :</label>
   <div class="controls">
-    <input id="textinput" name="adresse" th:field="*{price}" type="text" placeholder="prix" class="input-xlarge" required="required"/>
+    <input id="textinput" name="prix" th:field="*{price}" type="text" placeholder="prix" class="input-xlarge" required="required"/>
   </div>
 </div>
 
 
 <div class="control-group">
-  <label class="control-label" for="textinput">Marque:</label>
+  <label class="control-label" for="textinput">Provenance :</label>
   <div class="controls">
-    <input id="textinput" name="marque" th:field="*{marque}" type="text" placeholder="marque du produit" class="input-xlarge" required="required"/>
+    <input id="textinput" name="provenance" th:field="*{provenance}" type="text" placeholder="provenance du produit" class="input-xlarge" required="required"/>
   </div>
 </div>
 
+<div class="control-group">
+  <label class="control-label" for="textinput">Catégorie :</label>
+  
+   
+   <select class="selectpicker" name="categorie" th:field="*{categorie}" required="required">
+    <optgroup label="categorie">
+      <option value="Fruit">Fruit</option>
+      <option value="légume">Légume</option>
+      <option value="Poisson">Poisson</option>
+      <option value="Viande">Viande</option>
+    </optgroup>
+  </select>
+     
+</div>
 
-
-<!-- Button -->
+  
 <div class="control-group">
   <label class="control-label" for="singlebutton"></label>
   <div class="controls">
     <button id="singlebutton" name="singlebutton" class="btn btn-primary">Enregistrer</button>
   </div>
 </div>
+
+
 
 </fieldset>
 </form>

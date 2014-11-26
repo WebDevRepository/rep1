@@ -37,14 +37,21 @@ public class Application {
 	        
 	        admRepository.save(new Administrateur("elf@gmail.com","elfelf"));
 	        admRepository.save(new Administrateur("anas@gmail.com","anas"));
+	        
 	        caissierRepository.save(new Caissier("el farouf","taoufik",20,"Rue ibnou habous","taoufik@hotmail.com","elf"));
 	        caissierRepository.save(new Caissier("el Mourabit","Anas",20,"Rue du passage","anas@gmail.com","anas"));
-            clientRepository.save(new Client("El","Mourabit",0, "27", "anas@gmail.com", null));
-            clientRepository.save(new Client("Bob","marley",0, "99", "bob@gmail.com", null));
+           
+	        clientRepository.save(new Client(0, "El","Mourabit",null, 0, "27", "anas@gmail.com", null, null, null));
+            clientRepository.save(new Client(1, "Bob","marley",null, 0, "99", "bob@gmail.com", null, null, null));
+            clientRepository.save(new Client(2, "El","Mourabit",null, 0, "27", "anas@gmail.com", null, null, null));
+            clientRepository.save(new Client(3, "Bob","marley",null, 0, "99", "bob@gmail.com", null, null, null));
 
-            productRepository.save(new Product(0, "RGTH5","Produit1","Description","27","marque"));
-            productRepository.save(new Product(0, "REFG4","Produit2","Description","23","marque"));
-//	        List<Client> listClients = (List<Client>) clientRepository.findAll();
+            productRepository.save(new Product(0, "RGTH5","Produit1","Description","27","marque", null));
+            productRepository.save(new Product(1, "REFG4","Produit2","Description","23","marque", null));
+            productRepository.save(new Product(2, "RGTH5","Produit1","Description","27","marque", null));
+            productRepository.save(new Product(3, "REFG4","Produit2","Description","23","marque", null));
+
+            //	        List<Client> listClients = (List<Client>) clientRepository.findAll();
 //	        System.out.println("Affichage de nos clients");
 	        
 //	       System.out.println("Nom         "+"Prenom          "+"Ville          ");

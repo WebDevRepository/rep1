@@ -110,7 +110,8 @@
           <td>Nom</td> 
           <td>Description</td>
           <td>Prix</td>
-          <td>Marque</td>
+          <td>Provenance</td>
+          <td>Catégorie</td>
           
           </tr> 
         </thead>
@@ -126,7 +127,9 @@
           <td th:text="${product.name}"></td>
           <td th:text="${product.description}"></td>
           <td th:text="${product.price}">$</td>
-          <td th:text="${product.marque}">$</td>
+          <td th:text="${product.provenance}"></td>
+          <td th:text="${product.categorie}"></td>
+          
           <td> <span class="label label-success">  <a th:href="@{/edit(id=${product.id})}">edit</a></span></td>
     	  <td> <span class="label label-danger"> <a th:href="@{/delete(id=${product.id})}">delete</a></span></td>
           

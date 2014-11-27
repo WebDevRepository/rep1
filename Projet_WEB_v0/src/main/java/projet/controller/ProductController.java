@@ -59,7 +59,7 @@ public class ProductController {
 		
 		session.setAttribute("panierProduits",panier);
 		productRepository.save(product);
-		return "redirect:/l";
+		return "redirect:/lProduits";
 		
 	}
 	
@@ -72,20 +72,14 @@ public class ProductController {
 		return "listProduits";
 	}*/
 	
-	@RequestMapping(value = "/l", method = RequestMethod.GET)
-	public String listeProducts(Model model,HttpSession session) {
-		
-		//model.addAttribute("products", productRepository.findAll());
-		session.setAttribute("panierProduits",productRepository.findAll());
-		return "listProduits";
-	}
+	
 	
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public String deleteProduct(@RequestParam("id") Long id, Model model) {
 		
 		productRepository.delete(id);
 		
-		return "redirect:/l";
+		return "redirect:/lProduits";
 	}
 	
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
@@ -98,7 +92,7 @@ public class ProductController {
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	public String editPostProduct(@ModelAttribute Product product, Model model) {
 		productRepository.save(product);
-		return "redirect:/l";
+		return "redirect:/lProduits";
 	}
 	
 }

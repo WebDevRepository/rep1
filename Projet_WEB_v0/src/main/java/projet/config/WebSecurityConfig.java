@@ -34,13 +34,13 @@ import projet.repository.CaissierRepository;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/signin","/lClients","/lProduits","/caissiers","/","/administrateur","/login","/edit","/delete","/editC","/deleteC").permitAll()
+		http.authorizeRequests().antMatchers("/listClients","/signin","/lClients","/lProduits","/lCaissiers","/fProduit","/fClient","/lProduits","/caissiers","/","/administrateur","/login","/edit","/editC","/editCaissier","/delete","/deleteC","/deleteCaissier").permitAll()
 				.anyRequest().authenticated();
 
 		http.formLogin().loginPage("/login").usernameParameter("email")
 				.passwordParameter("pwd").permitAll().and().logout();
 		//	.logoutUrl("/bye").logoutSuccessUrl("/").permitAll();
-		
+		http.csrf().disable();
 		  
 	}
 	

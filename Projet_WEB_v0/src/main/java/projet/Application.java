@@ -41,10 +41,10 @@ public class Application {
 	        caissierRepository.save(new Caissier("el farouf","taoufik",20,"Rue ibnou habous","taoufik@hotmail.com","elf"));
 	        caissierRepository.save(new Caissier("el Mourabit","Anas",20,"Rue du passage","anas@gmail.com","anas"));
            
-	        clientRepository.save(new Client(0, "El","Mourabit",null, 0, "27", "anas@gmail.com", null, null, null));
-            clientRepository.save(new Client(1, "Bob","marley",null, 0, "99", "bob@gmail.com", null, null, null));
-            clientRepository.save(new Client(2, "El","Mourabit",null, 0, "27", "anas@gmail.com", null, null, null));
-            clientRepository.save(new Client(3, "Bob","marley",null, 0, "99", "bob@gmail.com", null, null, null));
+	        clientRepository.save(new Client(0, "El","Mourabit","Rue de l'adresse", 19, "Entreprise", "anas@gmail.com", "adresse", "ville", "email"));
+            clientRepository.save(new Client(1, "Bob","marley","rue de l'adresse", 20, "99", "bob@gmail.com", null, null, null));
+            clientRepository.save(new Client(2, "El","Mourabit","rue de l'avenue", 22, "27", "anas@gmail.com", null, null, null));
+            clientRepository.save(new Client(3, "Bob","marley","40,la rue ketanou", 24, "99", "bob@gmail.com", null, null, null));
 
             productRepository.save(new Product(0, "RGTH5","Produit1","Description","27","marque", null));
             productRepository.save(new Product(1, "REFG4","Produit2","Description","23","marque", null));

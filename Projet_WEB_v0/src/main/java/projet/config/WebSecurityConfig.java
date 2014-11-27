@@ -34,7 +34,7 @@ import projet.repository.CaissierRepository;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/signin","/lClients","/lProduits","/caissiers","/","/administrateur","/login").permitAll()
+		http.authorizeRequests().antMatchers("/signin","/lClients","/lProduits","/caissiers","/","/administrateur","/login","/edit","/delete","/editC","/deleteC").permitAll()
 				.anyRequest().authenticated();
 
 		http.formLogin().loginPage("/login").usernameParameter("email")
@@ -65,9 +65,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		public void init(AuthenticationManagerBuilder auth) throws Exception {
 			//administrateurRepository.save(new Administrateur("elf@gmail.com","elfelf"));
 	        //administrateurRepository.save(new Administrateur("anas@gmail.com","anas"));
-	        caissierRepository.save(new Caissier("el farouf","taoufik",20,"Rue ibnou habous","taoufik@hotmail.com","elf"));
+	        
+			caissierRepository.save(new Caissier("el farouf","taoufik",20,"Rue ibnou habous","taoufik@hotmail.com","elf"));
 	        caissierRepository.save(new Caissier("el Mourabit","Anas",20,"Rue du passage","anas@gmail.com","anas"));
-			listeCaissiers = (ArrayList<Caissier>) caissierRepository.findAll();
+			
+	        listeCaissiers = (ArrayList<Caissier>) caissierRepository.findAll();
 			System.out.println("taille :"+listeCaissiers.size());
 			Administrateur administrateur=new Administrateur();
 			int i=0;

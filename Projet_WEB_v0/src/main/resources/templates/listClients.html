@@ -179,11 +179,15 @@
                    <tr> 
                    
                    <th><input type="checkbox" id="checkall"/></th>
-                   <th>First Name</th>
-                   <th>Last Name</th>
-                   <th>Address</th>
-                   <th>Edit</th>
-                   <th>Delete</th>
+                   <th>#CODE Client</th>
+                   <th>Nom</th>
+                   <th>Prénom</th>
+                   <th>Entrerpise</th>
+                   <th>Adresse</th>
+                   <th>Ville</th>
+                   <th>Email</th>
+                   <th>Modifier</th>
+                   <th>Supprimer</th>
                    
                     </tr>   
                    </thead>
@@ -192,9 +196,15 @@
     <tr  th:each="client : ${session.panierClients}">
     <td><input type="checkbox" class="checkthis" /></td>
     
-    <td class="success" th:text="${client.id}">Mohsin</td>
-    <td th:text="${client.nom}">Irshad</td>
-    <td th:text="${client.prenom}">>CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan</td>
+    <td class="success" th:text="${client.refc}"></td>
+    <td th:text="${client.nom}"></td>
+    <td th:text="${client.prenom}"></td>
+    <td th:text="${client.entreprise}"></td>
+    <td th:text="${client.adresse}"></td>
+    <td th:text="${client.ville}"></td>
+    <td th:text="${client.email}"></td>
+    
+    
     <td><p><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" data-placement="top" rel="tooltip" th:action="@{/editC(id=${client.id})}"><span class="glyphicon glyphicon-pencil"></span></button></p></td>
     <td><p><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" data-placement="top" rel="tooltip" th:action="@{/deleteC(id=${client.id})}"><span class="glyphicon glyphicon-trash"></span></button></p></td>
     </tr>
@@ -205,18 +215,7 @@
         
 </table>
 
-<div class="clearfix"></div>
-<ul class="pagination pull-right">
-  <li class="disabled"><a href="#"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
-  <li class="active"><a href="#">1</a></li>
-  <li><a href="#">2</a></li>
-  <li><a href="#">3</a></li>
-  <li><a href="#">4</a></li>
-  <li><a href="#">5</a></li>
-  <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
-</ul>
-                
-            </div>
+</div>
             
         </div>
 	</div>
@@ -264,7 +263,7 @@
       </div>
           <div class="modal-body">
        
-       <div class="alert alert-warning"><span class="glyphicon glyphicon-warning-sign"></span> Etes-vous sur de vouloir supprimer ce produit ? <td> <span class="label label-danger"> <a th:href="@{/deleteC(id=${client.id})}">delete</a></span></td> </div>
+       <div class="alert alert-warning"><span class="glyphicon glyphicon-warning-sign"></span> Etes-vous sur de vouloir supprimer ce produit ?  <span class="label label-danger"> <a th:href="@{/deleteC(id=${client.id})}">delete</a></span> </div>
        
       </div>
         <div class="modal-footer ">

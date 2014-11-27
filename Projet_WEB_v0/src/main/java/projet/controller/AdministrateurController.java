@@ -6,6 +6,8 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,8 +18,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import projet.model.Administrateur;
 import projet.model.Caissier;
 import projet.model.Client;
+import projet.model.Facture;
 import projet.model.Product;
 import projet.repository.AdministrateurRepository;
+import projet.repository.FactureRepository;
+import projet.repository.ProductRepository;
 
 
 @Controller
@@ -26,7 +31,11 @@ public class AdministrateurController {
 	List<Administrateur> listeAdmins = new ArrayList<Administrateur>();
 	
 	@Autowired
+	private FactureRepository factureRepository;
+	@Autowired
 	private AdministrateurRepository administrateurRepository;
+	@Autowired
+	private ProductRepository productRepository;
 	
 	@RequestMapping(value="/admin", method=RequestMethod.GET)
 	public String loadAdminForm(Administrateur administrateur)
@@ -91,18 +100,49 @@ public class AdministrateurController {
 		return "listClients";	
 	}
 	*/
-	@RequestMapping(value="/signout", method=RequestMethod.GET)
+	
+	@RequestMapping(value="/signoutAdmin", method=RequestMethod.GET)
 	public String DecoAdminGET(Administrateur administrateur,HttpSession session)
 	{
-		session.removeAttribute("admin");
+		session.getAttribute("admin");
+		session.invalidate();
 		return "AccueilAdmin";	
 	}
 	
+	@RequestMapping(value="/signoutCaissier", method=RequestMethod.GET)
+	public String DecoCaissierGET(Administrateur administrateur,HttpSession session)
+	{
+		session.getAttribute("admin");
+		session.invalidate();
+		return "loginForm";	
+	}
+	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String Auth(Administrateur administrateur) {
+	public String Auth(@ModelAttribute Administrateur administrateur,Model model,HttpSession session) {
+		//session.getAttribute("admin");
+		//session.setAttribute("admin", administrateur.getEmail());
+		return "loginForm";
+	}
+	
+	@RequestMapping(value = "/pointVente", method = RequestMethod.GET)
+	public String pointDeVente(@ModelAttribute Administrateur administrateur,HttpSession session,Model model) {
+		model.addAttribute("facture",new Facture());
+		session.setAttribute("panierProduits",productRepository.findAll());
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		session.getAttribute("caissier");
+		session.setAttribute("caissier",auth.getName());
+		return "CaissierHello";
+	}
+	
+	@RequestMapping(value = "/administrateur", method = RequestMethod.GET)
+	public String admin(Administrateur administrateur) {
 		return "AccueilAdmin";
 	}
 	
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String index() {
+		return "login";
+	}
 	
 	
 	

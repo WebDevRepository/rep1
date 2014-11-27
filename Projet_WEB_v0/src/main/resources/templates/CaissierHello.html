@@ -1,0 +1,404 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"></link>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+   
+    <title>Accueil</title>
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ 
+     <style type="text/css"> 
+
+/*Form Wizard*/
+.bs-wizard {border-bottom: solid 1px #e0e0e0; padding: 0 0 10px 0;}
+.bs-wizard > .bs-wizard-step {padding: 0; position: relative;}
+.bs-wizard > .bs-wizard-step + .bs-wizard-step {}
+.bs-wizard > .bs-wizard-step .bs-wizard-stepnum {color: #595959; font-size: 10px; margin-bottom: 5px;}
+.bs-wizard > .bs-wizard-step .bs-wizard-info {color: #999; font-size: 14px;}
+.bs-wizard > .bs-wizard-step > .bs-wizard-dot {position: absolute; width: 20px; height: 20px; display: block; background: #fbe8aa; top: 45px; left: 50%; margin-top: -15px; margin-left: -15px; border-radius: 50%;} 
+.bs-wizard > .bs-wizard-step > .bs-wizard-dot:after {content: ' '; width: 14px; height: 14px; background: #fbbd19; border-radius: 50px; position: absolute; top: 8px; left: 8px; } 
+.bs-wizard > .bs-wizard-step > .progress {position: relative; border-radius: 0px; height: 8px; box-shadow: none; margin: 20px 0;}
+.bs-wizard > .bs-wizard-step > .progress > .progress-bar {width:0px; box-shadow: none; background: #fbe8aa;}
+.bs-wizard > .bs-wizard-step.complete > .progress > .progress-bar {width:100%;}
+.bs-wizard > .bs-wizard-step.active > .progress > .progress-bar {width:50%;}
+.bs-wizard > .bs-wizard-step:first-child.active > .progress > .progress-bar {width:0%;}
+.bs-wizard > .bs-wizard-step:last-child.active > .progress > .progress-bar {width: 100%;}
+.bs-wizard > .bs-wizard-step.disabled > .bs-wizard-dot {background-color: #f5f5f5;}
+.bs-wizard > .bs-wizard-step.disabled > .bs-wizard-dot:after {opacity: 0;}
+.bs-wizard > .bs-wizard-step:first-child  > .progress {left: 50%; width: 50%;}
+.bs-wizard > .bs-wizard-step:last-child  > .progress {width: 50%;}
+.bs-wizard > .bs-wizard-step.disabled a.bs-wizard-dot{ pointer-events: none; }
+/*END Form Wizard*/
+   
+   .dual-list .list-group {
+            margin-top: 8px;
+        }
+
+        .list-left li, .list-right li {
+            cursor: pointer;
+        }
+
+        .list-arrows {
+            padding-top: 100px;
+        }
+
+            .list-arrows button {
+                margin-bottom: 20px;
+            }
+   
+</style>
+
+<script type="text/javascript">  
+    $(document).ready(function(){
+        $(".dropdown").hover(            
+            function() {
+                $('.dropdown-menu', this).stop( true, true ).slideDown("fast");
+                $(this).toggleClass('open');        
+            },
+            function() {
+                $('.dropdown-menu', this).stop( true, true ).slideUp("fast");
+                $(this).toggleClass('open');       
+            }
+        );
+    });
+
+</script>
+
+
+<script type="text/javascript">  
+
+    $(document).ready(function() {
+
+        $('body').on('click', '.list-group .list-group-item', function () {
+            $(this).toggleClass('active');
+        });
+        $('.list-arrows button').click(function () {
+            var $button = $(this), actives = '';
+            if ($button.hasClass('move-left')) {
+                actives = $('.list-right ul li.active');
+                actives.clone().appendTo('.list-left ul');
+                actives.remove();
+            } else if ($button.hasClass('move-right')) {
+                actives = $('.list-left ul li.active');
+                actives.clone().appendTo('.list-right ul');
+                actives.remove();
+            }
+        });
+        $('.dual-list .selector').click(function () {
+            var $checkBox = $(this);
+            if (!$checkBox.hasClass('selected')) {
+                $checkBox.addClass('selected').closest('.well').find('ul li:not(.active)').addClass('active');
+                $checkBox.children('i').removeClass('glyphicon-unchecked').addClass('glyphicon-check');
+            } else {
+                $checkBox.removeClass('selected').closest('.well').find('ul li.active').removeClass('active');
+                $checkBox.children('i').removeClass('glyphicon-check').addClass('glyphicon-unchecked');
+            }
+        });
+        $('[name="SearchDualList"]').keyup(function (e) {
+            var code = e.keyCode || e.which;
+            if (code == '9') return;
+            if (code == '27') $(this).val(null);
+            var $rows = $(this).closest('.dual-list').find('.list-group li');
+            var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+            $rows.show().filter(function () {
+                var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+                return !~text.indexOf(val);
+            }).hide();
+        });
+    });
+   </script>
+
+</head>
+
+<body onload="CalculerMontantTTC()">
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-slide-dropdown">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/AdminHello">Projet</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-slide-dropdown">
+        <ul class="nav navbar-nav">
+
+        	
+        </ul>
+        <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Recherche"/>
+            </div>
+            <button type="submit" class="btn btn-default">Entrer</button>
+        </form>
+        <ul class="nav navbar-nav navbar-right">
+            
+            <li class="dropdown">
+ <a href="#" class="dropdown-toggle" data-toggle="dropdown"><strong th:text="${session.caissier}"></strong> <span class="caret"></span></a>
+
+              <ul class="dropdown-menu" role="menu">
+                <li class="divider"></li>
+                <li><a th:action="@{/signoutCaissier}" href="/login">Déconnexion</a></li>
+              </ul>
+            </li>
+        </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<!-- <form th:action="@{/signout}" method="get"> -->
+<!-- <p>Vous etes connecte en tant que : <strong th:text="${session.admin}"></strong> -->
+
+
+<!--  <input type="submit" value="Se deconnecter" /> -->
+
+<!-- </p> -->
+<!-- </form> -->
+<h3> Point de vente </h3>
+<div class="container">
+    <br/>
+	<div class="row">
+
+        <div class="dual-list list-left col-md-5">
+            <div class="well text-right">
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon-search"></span>
+                            <input type="text" name="SearchDualList" class="form-control" placeholder="search" />
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="btn-group">
+                            <a class="btn btn-default selector" title="select all"><i class="glyphicon glyphicon-unchecked"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <ul class="list-group">
+                    <li class="list-group-item">bootstrap-duallist <a href="https://github.com/bbilginn/bootstrap-duallist" target="_blank">github</a></li>
+                    <li class="list-group-item">Dapibus ac facilisis in</li>
+                    <li class="list-group-item">Morbi leo risus</li>
+                    <li class="list-group-item">Porta ac consectetur ac</li>
+                    <li class="list-group-item">Vestibulum at eros</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="list-arrows col-md-1 text-center">
+            <button class="btn btn-default btn-sm move-left">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </button>
+
+            <button class="btn btn-default btn-sm move-right">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+            </button>
+        </div>
+
+        <div class="dual-list list-right col-md-5">
+            <div class="well">
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="btn-group">
+                            <a class="btn btn-default selector" title="select all"><i class="glyphicon glyphicon-unchecked"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <input type="text" name="SearchDualList" class="form-control" placeholder="search" />
+                            <span class="input-group-addon glyphicon glyphicon-search"></span>
+                        </div>
+                    </div>
+                </div>
+                <ul class="list-group">
+                    <li class="list-group-item">Cras justo odio</li>
+                    <li class="list-group-item">Dapibus ac facilisis in</li>
+                    <li class="list-group-item">Morbi leo risus</li>
+                    <li class="list-group-item">Porta ac consectetur ac</li>
+                    <li class="list-group-item">Vestibulum at eros</li>
+                </ul>
+            </div>
+        </div>
+
+	</div>
+</div>
+
+<FORM Name="Form1">
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-10 col-md-offset-1">
+            <table class="table table-hover" id="facture">
+                <thead>
+                    <tr>
+                        <th>Produits</th>
+                        <th>Quantité</th>
+                        <th class="text-center">Prix</th>
+                        <th class="text-center">Total</th>
+                        <th> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="product : ${session.panierProduits}">
+                        <td class="col-sm-8 col-md-6">
+                        <div class="media">
+                            <a class="thumbnail pull-left" href="#"> <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;"/> </a>
+                            <div class="media-body">
+                                <h4 class="media-heading"> <a th:text="${product.name}"></a></h4>
+                                <h5 class="media-heading"> by <a th:text="${product.description}"></a></h5>
+                                <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
+                            </div>
+                        </div>
+                        </td>
+                        
+                        <td class="col-sm-1 col-md-1" style="text-align: center">
+                        
+                        <input type="text" class="qte" name="qte" onKeyUp="CalculerMontantTTC()" value="1"/>
+                        </td>
+                        <td class="col-sm-1 col-md-1 text-center"><input class="prix" th:value="${product.price}"  type="text" name="prix" disabled="disabled"/></td>
+                        <td class="col-sm-1 col-md-1 text-center"><label><input class="ttc" type="text" name="ttc"/></label></td>
+                        
+                        <td class="col-sm-1 col-md-1">
+                        <button type="button" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove"></span> Remove
+                        </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-6">
+                        <div class="media">
+                            <a class="thumbnail pull-left" href="#"> <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;"/> </a>
+                            <div class="media-body">
+                                <h4 class="media-heading"><a href="#">Product name</a></h4>
+                                <h5 class="media-heading"> by <a href="#">Brand name</a></h5>
+                                <span>Status: </span><span class="text-warning"><strong>Leaves warehouse in 2 - 3 weeks</strong></span>
+                            </div>
+                        </div></td>
+                        <td class="col-md-1" style="text-align: center">
+                        <input type="email" class="form-control" id="exampleInputEmail1" value="4.99"/>
+                        </td>
+                        <td class="col-md-1 text-center" name="pu"><strong>$4.99</strong></td>
+                        <td class="col-md-1 text-center" name="pu"><strong>$9.98</strong></td>
+                        <td class="col-md-1">
+                        <button type="button" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove"></span> Remove
+                        </button></td>
+                    </tr>
+                   
+                    <tr th:each="ol,row : *{product}" th:class="${row.odd}? 'odd'">
+        				<td th:text="${ol.product.name}">Strawberries</td>
+        				<td th:text="${ol.product.price}" class="number">3</td>
+       	 				<td th:text="${ol.product.price}" class="number">23.32</td>
+      
+                        
+                        <td><h5>Subtotal</h5></td>
+                        <td class="text-right"> <input th:text="*{#aggregates.sum(product.{price * price})}"></input><h5><strong>$24.59</strong></h5></td>
+                    </tr>
+                    <tr>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>   </td>
+                        <td><h5>Estimated shipping</h5></td>
+                        <td class="text-right" ><h5><strong>$6.94</strong></h5></td>
+                    </tr>
+                    <tr>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>   </td>
+                        <td><h3>Total</h3></td>
+                        <td class="text-right"><h3 id="total"><strong>$31.53</strong></h3></td>
+                    </tr>
+                    <tr>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>
+                        <button type="button" class="btn btn-default">
+                            <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
+                        </button></td>
+                        <td>
+                        <button type="button" class="btn btn-success">
+                            Checkout <span class="glyphicon glyphicon-play"></span>
+                        </button></td>
+                    </tr>
+                </tbody>
+            </table>
+           
+        </div>
+    </div>
+</div>
+
+
+<!-- <h2>Calcul de la TVA</h2>
+
+Montant hors taxes <input type='text' Name='ht' onKeyUp='CalculerMontantTTC()' Value='0'/>
+
+Montant TVA (19.6%) <input type ='text' Name='tva'/>
+
+ <input type ='text' Name='ttc'/> -->
+</FORM>
+
+<form th:action="@{/facture}" method="post">
+ <div class="col-sm-offset-2 col-sm-10">
+	<button type="submit" class="btn btn-success btn-sm">Valider</button>
+</div>
+</form>
+<script type="text/javascript" th:inline="javascript">  
+
+
+function CalculerMontantTTC()
+{
+if (isNaN(Form1.qte.value) == true)
+{
+alert('Merci de saisir un montant correct. Calcul impossible.');
+Form1.qte.value = '0';
+}
+else
+{
+alert('bonjour');
+var table = document.getElementById('facture');
+var r = table.rows.length;
+alert('Nb Lignes :'+r);
+var a = 1;
+var total = document.getElementById('total');
+var monTotal = 0;
+var st = 0;
+/* <![CDATA[ */
+         for(var rr=1;rr < r-4; rr++) {
+        	var a=table.rows[rr];
+        	var listeInput = a.getElementsByTagName('input');
+        	  for(var i = 0,l =listeInput.length-1;i<l;i++){
+        		  //alert('resultat '+listeInput[i].value * listeInput[i+1].value);
+        		  listeInput[i+2].value = listeInput[i].value * listeInput[i+1].value;
+        		  st=listeInput[i+2].value;
+        		  break;
+        		}
+        	 
+        	  monTotal = Number(monTotal) + Number(st);
+ 			
+         }
+         total.innerHTML = monTotal;
+         
+/* ]]> */
+}
+}
+
+</script>       
+  
+  
+
+
+
+
+ 
+   
+  
+</body>
+</html> 

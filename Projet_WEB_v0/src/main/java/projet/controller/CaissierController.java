@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import projet.model.Caissier;
 import projet.model.Client;
 import projet.repository.CaissierRepository;
+import projet.repository.FactureRepository;
+import projet.repository.ProductRepository;
 
 
 @Controller
@@ -23,6 +25,10 @@ public class CaissierController {
 	
 	@Autowired
 	CaissierRepository caissierRepository;
+	@Autowired
+	private ProductRepository productRepository;
+	@Autowired
+	private FactureRepository factureRepository;
 	
 	
 	@RequestMapping(value="/caissiers", method=RequestMethod.GET)
@@ -86,6 +92,13 @@ public class CaissierController {
 	public String editPostCaissier(@ModelAttribute Caissier caissier, Model model) {
 		caissierRepository.save(caissier);
 		return "redirect:/c"; 
+	}
+	
+	@RequestMapping(value = "/facture", method = RequestMethod.POST)
+	public String facture(Model model,HttpSession session) {
+		session.setAttribute("panierProduits",productRepository.findAll());
+		model.addAttribute("facture",factureRepository.findAll());
+		return "facture"; 
 	}
 
 }

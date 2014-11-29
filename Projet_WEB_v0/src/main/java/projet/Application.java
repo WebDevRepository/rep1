@@ -38,18 +38,18 @@ public class Application {
 	        admRepository.save(new Administrateur("elf@gmail.com","elfelf"));
 	        admRepository.save(new Administrateur("anas@gmail.com","anas"));
 	        
-	        caissierRepository.save(new Caissier("el farouf","taoufik",20,"Rue ibnou habous","taoufik@hotmail.com","elf"));
-	        caissierRepository.save(new Caissier("el Mourabit","Anas",20,"Rue du passage","anas@gmail.com","anas"));
+	        caissierRepository.save(new Caissier(null, "el farouf","taoufik",null, 20,"Rue ibnou habous","taoufik@hotmail.com","elf"));
+	        caissierRepository.save(new Caissier(null, "el Mourabit","Anas",null, 20,"Rue du passage","anas@gmail.com","anas"));
            
 	        clientRepository.save(new Client(1, "El","Mourabit","Rue de l'adresse", 19, "Entreprise", "anas@gmail.com", "adresse", "ville", "email"));
-            clientRepository.save(new Client(2, "Bob","marley","rue de l'adresse", 20, "99", "bob@gmail.com", null, null, null));
-            clientRepository.save(new Client(3, "El","Mourabit","rue de l'avenue", 22, "27", "anas@gmail.com", null, null, null));
+            clientRepository.save(new Client(14546989, "Bob","marley","rue de l'adresse", 20, "99", "bob@gmail.com", null, null, null));
+            clientRepository.save(new Client(4654, "El","Mourabit","rue de l'avenue", 22, "27", "anas@gmail.com", null, null, null));
             
 
-            productRepository.save(new Product(1, "RGTH5","Produit1","Description","27","marque", null));
-            productRepository.save(new Product(2, "REFG4","Produit2","Description","23","marque", null));
-            productRepository.save(new Product(3, "RGTH5","Produit1","Description","27","marque", null));
-            productRepository.save(new Product(4, "REFG4","Produit2","Description","23","marque", null));
+          productRepository.save(new Product(0, "RGTH5","Produit1","Description","27","marque", null));
+            productRepository.save(new Product(0, "REFG4","Produit2","Description","23","marque", null));
+            productRepository.save(new Product(0, "RGTH6","Produit3","Description","27","marque", null));
+            productRepository.save(new Product(0, "REFG7","Produit4","Description","23","marque", null));
 
             //	        List<Client> listClients = (List<Client>) clientRepository.findAll();
 //	        System.out.println("Affichage de nos clients");

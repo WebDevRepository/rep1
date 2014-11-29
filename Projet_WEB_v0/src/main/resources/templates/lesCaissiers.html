@@ -35,7 +35,7 @@
         <ul class="nav navbar-nav">
             <li><a href="/lProduits">Produits</a></li>
             <li><a href="/lClients">Clients</a></li>
-            <li><a href="/caissiers">Employés</a></li>
+            <li><a href="/lCaissiers">Employés</a></li>
         	
         </ul>
         <form class="navbar-form navbar-left" role="search">
@@ -52,7 +52,7 @@
               <ul class="dropdown-menu" role="menu">
                 <li><a href="/lProduits">Gestion des produits</a></li>
                 <li><a href="/lClients">Gestion des clients</a></li>
-                <li><a href="/caissiers">Gestion des Employés</a></li>
+                <li><a href="/lCaissiers">Gestion des Employés</a></li>
                 <li class="divider"></li>
                 <li><a th:action="@{/signout}" href="/login">Déconnexion</a></li>
               </ul>
@@ -70,34 +70,66 @@
 </fieldset>
 <div class="panel panel-default">
   
-  <div class="panel-heading">Liste des employés</div>
+  <div class="panel-heading"><strong>Liste des employés :</strong></div>
  
 </div>
 <a href="/formCaissiers">  Ajouter un nouveau employé : </a>
-<div class="container"> 
-    <div class="row"> 
-    <div class="col-xs-12 col-sm-10 col-md-6"> 
-   <table class="table table-bordered table-striped table-hover">
-   <thead>
-   <tr>
-   <td>Nom</td><td>Prenom</td><td>Age</td><td>Adresse</td><td>Email</td>
-   </tr>
-   </thead>
-   <tbody>
-	<tr th:each="cc: ${session.panierCaissiers}">
-	<td th:text="${{cc.nom}}"></td>
-	<td th:text="${{cc.prenom}}"></td>
-	<td th:text="${{cc.age}}"></td>
-	<td th:text="${{cc.adresse}}"></td>
-	<td th:text="${{cc.email}}"></td>
-	<td><span class="label label-success"><a th:href="@{/editCaissier(id=${cc.id})}">edit</a></span></td>
-	<td><span class="label label-danger"><a th:href="@{/deleteCaissier(id=${cc.id})}">delete</a></span></td> 
-    </tr>
+<div class="container">
+	<div class="row">
+		
+        
+        <div class="col-md-12">
+        <div class="table-responsive">
+        
+                
+              <table id="mytable" class="table table-bordred table-striped">
+                   
+                   <thead>
+                   <tr> 
+                   
+                 <th><input type="checkbox" id="checkall"/></th>
+                 <td>Code Caissier</td> 
+         		 <td>Nom</td> 
+         		 <td>Prenom</td>
+        	     <td>Adresse</td>
+          		 <td>Age</td>
+                 <td>email</td>
+                 <th>Modifier</th>
+                 <th>Supprimer</th>
+                   
+                    </tr>   
+                   </thead>
+    <tbody>
+    
+    <tr  th:each="cc : ${session.panierCaissiers}">
+    <td><input type="checkbox" class="checkthis" /></td>
+    
+    <td class="success" th:text="${cc.refcli}"></td>
+    <td th:text="${cc.nom}"></td>
+    <td th:text="${cc.prenom}"></td>
+    <td th:text="${cc.adresse}"></td>
+    <td th:text="${cc.age}"></td>
+    <td th:text="${cc.email}"></td>
+    
+    
+    <td> <span class="label label-success">  <a th:href="@{/editCaissier(id=${cc.id})}">edit</a></span></td>
+    <td> <span class="label label-danger"> <a th:href="@{/deleteCaissier(id=${cc.id})}">delete</a></span></td>
+  
+        </tr>
+    
     </tbody>
+        
 </table>
+
 </div>
+            
+        </div>
+	</div>
 </div>
-</div>
+
+
+
+
 <script src="http://bootstrap.twit.free.fr/js/jquery.js"></script> 
 <script src="http://bootstrap/js/bootstrap.min.js "></script>
  <script type="text/javascript">

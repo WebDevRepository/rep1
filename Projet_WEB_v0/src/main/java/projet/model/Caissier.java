@@ -4,9 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.Size;
-
-import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class Caissier {
@@ -14,19 +11,30 @@ public class Caissier {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
+	private String refcli;
 	private String nom;
 	private String prenom;
 	private int age;
 	private String adresse;
 	private String email;
 	private String mdp;
-	
+
+	public String getRefcli() {
+		return refcli;
+	}
 	public Caissier() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	public Caissier(String nom, String prenom, int age,
+
+	public void setRefcli(String refcli) {
+		this.refcli = refcli;
+	}
+
+	public Caissier(Long id, String refcli, String nom, String prenom, int age,
 			String adresse, String email, String mdp) {
+		super();
+		this.id = id;
+		this.refcli = refcli;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.age = age;
@@ -34,6 +42,7 @@ public class Caissier {
 		this.email = email;
 		this.mdp = mdp;
 	}
+
 	public Long getId() {
 		return id;
 	}

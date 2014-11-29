@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+<meta charset="utf-8"></meta>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"></link>
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -33,64 +34,155 @@
 }
 </style>
 </head>
-<body>
-<div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="text-center"><strong>Order summary</strong></h3>
+<body onload=" CalculerMontantTTC()">
+
+
+<div class="container">
+    <div class="row">
+        <div class="well col-xs-10 col-sm-10 col-md-6 col-xs-offset-1 col-sm-offset-1 col-md-offset-3">
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6" th:each="cc : ${session.panierCaissiers}">
+                    <address th:text="${product.name}">
+                        <strong>Elf Cafe</strong>
+                      
+                        
+                    </address>
                 </div>
-                <div class="panel-body">
-                    <div class="table-responsive">
-                        <table class="table table-condensed">
-                            <thead>
-                                <tr>
-                                    <td><strong>Designation</strong></td>
-                                    <td class="text-center"><strong>Prix</strong></td>
-                                    <td class="text-center"><strong>Quantite</strong></td>
-                                    <td class="text-right"><strong>Total HT</strong></td>
-                                </tr>
-                            </thead>
-                            <tbody> 
-                                <tr th:each="product : ${session.panierProduits}">
-                                    <td th:text="${product.name}"></td>
-                                    <td class="text-center"  th:text="${product.price}"></td>
-                                    <td class="text-center"></td>
-                                    <td class="text-right"></td>
-                                </tr>
-                                
-                                <tr>
-                                    <td class="highrow"></td>
-                                    <td class="highrow"></td>
-                                    <td class="highrow text-center"><strong>Subtotal HT</strong></td>
-                                    <td class="highrow text-right">$958.00</td>
-                                </tr>
-                                
-                                <tr>
-                                    <td class="highrow"></td>
-                                    <td class="highrow"></td>
-                                    <td class="highrow text-center"><strong>TVA</strong></td>
-                                    <td class="highrow text-right">$958.00</td>
-                                </tr>
-                                
-                                <tr>
-                                    <td class="emptyrow"></td>
-                                    <td class="emptyrow"></td>
-                                    <td class="emptyrow text-center"><strong>Shipping</strong></td>
-                                    <td class="emptyrow text-right">$20</td>
-                                </tr>
-                                <tr>
-                                    <td class="emptyrow"><i class="fa fa-barcode iconbig"></i></td>
-                                    <td class="emptyrow"></td>
-                                    <td class="emptyrow text-center"><strong>Total</strong></td>
-                                    <td class="emptyrow text-right">$978.00</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 text-right">
+                    <p>
+                        <em>Date: 1st November, 2013</em>
+                    </p>
+                    <p>
+                        <em>Commande n° #: 34522677W</em>
+                    </p>
                 </div>
+            </div>
+            <div class="row">
+                <div class="text-center">
+                    <h1>Facture</h1>
+                </div>
+              
+                <table class="table table-hover" id="facture">
+                    <thead>
+                        <tr >
+                            <th>Produit</th>
+                            <th class="text-center">#</th>
+                            <th class="text-center">Prix</th>
+                            <th class="text-center">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="facture : ${OurProducts}">
+                            <td class="col-md-9" th:text="${facture.produit}"><em></em></td>
+                            <td class="col-md-1" th:text="${facture.qte}" style="text-align: center"></td>
+                            <td class="col-md-1 text-center" th:text="${facture.prix}"></td>
+                            <td class="col-md-1 text-center"></td>
+                            
+                            
+                        </tr>
+                      
+                        <tr>
+                            <td>   </td>
+                            <td>   </td>
+                            <td class="text-center">
+                                <strong>Sous-total: </strong>
+                            </td>
+                            
+                            <td class="text-right">
+                            
+                                <h3 id="totalHT"><strong></strong></h3>
+                            
+                           </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>   </td>
+                            <td>   </td>
+                            <td class="text-right"><h4><strong>TVA: </strong></h4></td>
+                            <td class="text-center text-danger"><h4 id="tva"><strong>19.6%</strong></h4></td>
+                        </tr>
+                        
+                        <tr>
+                            <td>   </td>
+                            <td>   </td>
+                            <td class="text-right"><h4><strong>Total: </strong></h4></td>
+                            <td class="text-center text-danger"><h4 id="totalTTC"><strong></strong></h4></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button type="button" class="btn btn-success btn-lg btn-block">
+                    Paiement   <span class="glyphicon glyphicon-chevron-right"></span>
+                </button>
             </div>
         </div>
     </div>
+</div>
+
+
+<script type="text/javascript" th:inline="javascript">  
+function CalculerMontantTTC()
+{
+	var table = document.getElementById('facture');
+	var r = table.rows.length;
+	var a = 1;
+	var total = document.getElementById('totalHT');
+	var ttc = document.getElementById('totalTTC');
+	var monTotal = 0;
+	var st = 0;
+	var totalttc = 0;
+	
+	/* <![CDATA[ */
+	         for(var rr=1;rr < r-3; rr++) {
+	        	var a=table.rows[rr];
+	        	var cellules = a.cells;
+	        	alert(cellules.length)
+	        	  for(var i = 0,l =cellules.length-1;i<l;i++){
+	        		  //alert('resultat '+listeInput[i].value * listeInput[i+1].value);
+	        		  cellules[i+3].innerHTML = cellules[i+1].innerHTML * cellules[i+2].innerHTML;
+	        		  st=cellules[i+3].innerHTML;
+	        		  break;
+	        		}
+	        	 
+	        	  monTotal = Number(monTotal) + Number(st);	 	
+	        	  //alert(monTotal);
+	         }
+	         total.innerHTML = monTotal +' €';
+	         totalttc = (monTotal / 100) * 19.6 + monTotal;
+	         
+	         ttc.innerHTML = totalttc +' €';
+	         /* ]]> */
+}
+</script>
+
+
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

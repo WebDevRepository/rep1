@@ -1,6 +1,12 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
+
+</script>
+<script type="text/javascript">
+var j=jQuery.noConflict();
+</script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"></link>
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -67,48 +73,48 @@
 
 </script>
 
-
 <script type="text/javascript">  
 
-    $(document).ready(function() {
+        $(function () {
 
-        $('body').on('click', '.list-group .list-group-item', function () {
-            $(this).toggleClass('active');
-        });
-        $('.list-arrows button').click(function () {
-            var $button = $(this), actives = '';
-            if ($button.hasClass('move-left')) {
-                actives = $('.list-right ul li.active');
-                actives.clone().appendTo('.list-left ul');
-                actives.remove();
-            } else if ($button.hasClass('move-right')) {
-                actives = $('.list-left ul li.active');
-                actives.clone().appendTo('.list-right ul');
-                actives.remove();
-            }
-        });
-        $('.dual-list .selector').click(function () {
-            var $checkBox = $(this);
-            if (!$checkBox.hasClass('selected')) {
-                $checkBox.addClass('selected').closest('.well').find('ul li:not(.active)').addClass('active');
-                $checkBox.children('i').removeClass('glyphicon-unchecked').addClass('glyphicon-check');
-            } else {
-                $checkBox.removeClass('selected').closest('.well').find('ul li.active').removeClass('active');
-                $checkBox.children('i').removeClass('glyphicon-check').addClass('glyphicon-unchecked');
-            }
-        });
-        $('[name="SearchDualList"]').keyup(function (e) {
-            var code = e.keyCode || e.which;
-            if (code == '9') return;
-            if (code == '27') $(this).val(null);
-            var $rows = $(this).closest('.dual-list').find('.list-group li');
-            var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
-            $rows.show().filter(function () {
-                var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
-                return !~text.indexOf(val);
-            }).hide();
-        });
-    });
+            $('body').on('click', '.list-group .list-group-item', function () {
+                $(this).toggleClass('active');
+            });
+            $('.list-arrows button').click(function () {
+                var $button = $(this), actives = '';
+                if ($button.hasClass('move-left')) {
+                    actives = $('.list-right ul li.active');
+                    actives.clone().appendTo('.list-left ul');
+                    actives.remove();
+                } else if ($button.hasClass('move-right')) {
+                    actives = $('.list-left ul li.active');
+                    actives.clone().appendTo('.list-right ul');
+                    actives.remove();
+                }
+            });
+            $('.dual-list .selector').click(function () {
+                var $checkBox = $(this);
+                if (!$checkBox.hasClass('selected')) {
+                    $checkBox.addClass('selected').closest('.well').find('ul li:not(.active)').addClass('active');
+                    $checkBox.children('i').removeClass('glyphicon-unchecked').addClass('glyphicon-check');
+                } else {
+                    $checkBox.removeClass('selected').closest('.well').find('ul li.active').removeClass('active');
+                    $checkBox.children('i').removeClass('glyphicon-check').addClass('glyphicon-unchecked');
+                }
+            });
+            $('[name="SearchDualList"]').keyup(function (e) {
+                var code = e.keyCode || e.which;
+                if (code == '9') return;
+                if (code == '27') $(this).val(null);
+                var $rows = $(this).closest('.dual-list').find('.list-group li');
+                var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+                $rows.show().filter(function () {
+                    var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+                    return !~text.indexOf(val);
+                }).hide();
+            });
+
+        
    </script>
 
 </head>
@@ -124,14 +130,16 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/AdminHello">Projet</a>
+      <a class="navbar-brand" href="/AdminHello"><span class="glyphicon glyphicon-home"></span>Projet</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-slide-dropdown">
         <ul class="nav navbar-nav">
 
-        	
+        	<li><a href="/lProduits">Produits</a></li>
+            <li><a href="/lClients">Clients</a></li>
+            <li><a href="/lCaissiers">Employés</a></li>
         </ul>
         <form class="navbar-form navbar-left" role="search">
             <div class="form-group">
@@ -163,71 +171,28 @@
 <!-- </p> -->
 <!-- </form> -->
 <h3> Point de vente </h3>
-<div class="container">
-    <br/>
-	<div class="row">
 
-        <div class="dual-list list-left col-md-5">
-            <div class="well text-right">
-                <div class="row">
-                    <div class="col-md-10">
-                        <div class="input-group">
-                            <span class="input-group-addon glyphicon glyphicon-search"></span>
-                            <input type="text" name="SearchDualList" class="form-control" placeholder="search" />
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="btn-group">
-                            <a class="btn btn-default selector" title="select all"><i class="glyphicon glyphicon-unchecked"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <ul class="list-group">
-                    <li class="list-group-item">bootstrap-duallist <a href="https://github.com/bbilginn/bootstrap-duallist" target="_blank">github</a></li>
-                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                    <li class="list-group-item">Morbi leo risus</li>
-                    <li class="list-group-item">Porta ac consectetur ac</li>
-                    <li class="list-group-item">Vestibulum at eros</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="list-arrows col-md-1 text-center">
-            <button class="btn btn-default btn-sm move-left">
-                <span class="glyphicon glyphicon-chevron-left"></span>
-            </button>
-
-            <button class="btn btn-default btn-sm move-right">
-                <span class="glyphicon glyphicon-chevron-right"></span>
-            </button>
-        </div>
-
-        <div class="dual-list list-right col-md-5">
-            <div class="well">
-                <div class="row">
-                    <div class="col-md-2">
-                        <div class="btn-group">
-                            <a class="btn btn-default selector" title="select all"><i class="glyphicon glyphicon-unchecked"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-md-10">
-                        <div class="input-group">
-                            <input type="text" name="SearchDualList" class="form-control" placeholder="search" />
-                            <span class="input-group-addon glyphicon glyphicon-search"></span>
-                        </div>
-                    </div>
-                </div>
-                <ul class="list-group">
-                    <li class="list-group-item">Cras justo odio</li>
-                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                    <li class="list-group-item">Morbi leo risus</li>
-                    <li class="list-group-item">Porta ac consectetur ac</li>
-                    <li class="list-group-item">Vestibulum at eros</li>
-                </ul>
-            </div>
-        </div>
-
-	</div>
+<div>
+<h3>Liste des produits</h3>
+      
+ <form  onsubmit="return getSelectedOptions();" action="#" th:object="${bill}" method="post" class="form-horizontal">
+   
+   <div style="display:inline-block;">
+    <select th:field="*{produit}"  id="listeproduits" name="listeproduits" class="input-xlarge" multiple="multiple" style="width: 120px;height: 300px">
+      <option th:each="produits : ${produitsss}"  
+      		  th:value="${produits.name}" 
+      		  th:text="${produits.name}"></option>
+    </select>
+      <select th:field="*{prix}" id="listeproduits" name="listeproduits" class="input-xlarge" multiple="multiple" style="width: 120px;height: 300px">
+      <option th:each="produits : ${produitsss}" disabled="disabled"
+      		  th:value="${produits.price}"
+      		  th:text="${produits.price} + ' €'"></option>
+    </select>
+    
+    </div>
+    
+    <input type="submit" value="Ajouter" class="btn btn-success"/>
+   </form>
 </div>
 
 <FORM Name="Form1">
@@ -246,13 +211,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="product : ${session.panierProduits}">
+                    <tr th:each="bill : ${listeFacture}">
                         <td class="col-sm-8 col-md-6">
                         <div class="media">
                             <a class="thumbnail pull-left" href="#"> <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;"/> </a>
                             <div class="media-body">
-                                <h4 class="media-heading"> <a th:text="${product.name}"></a></h4>
-                                <h5 class="media-heading"> by <a th:text="${product.description}"></a></h5>
+                                <h4 class="media-heading"><a th:text="${bill.produit}"></a> </h4>
+                                <h5 class="media-heading"></h5>
                                 <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
                             </div>
                         </div>
@@ -262,7 +227,7 @@
                         
                         <input type="text" class="qte" name="qte" onKeyUp="CalculerMontantTTC()" value="1"/>
                         </td>
-                        <td class="col-sm-1 col-md-1 text-center"><input class="prix" th:value="${product.price}"  type="text" name="prix" disabled="disabled"/></td>
+                        <td class="col-sm-1 col-md-1 text-center"><input class="prix" th:value="${bill.prix}" type="text" name="prix" disabled="disabled"/></td>
                         <td class="col-sm-1 col-md-1 text-center"><label><input class="ttc" type="text" name="ttc"/></label></td>
                         
                         <td class="col-sm-1 col-md-1">
@@ -292,37 +257,37 @@
                         </button></td>
                     </tr>
                    
-                    <tr th:each="ol,row : *{product}" th:class="${row.odd}? 'odd'">
-        				<td th:text="${ol.product.name}">Strawberries</td>
-        				<td th:text="${ol.product.price}" class="number">3</td>
-       	 				<td th:text="${ol.product.price}" class="number">23.32</td>
+<!--                     <tr th:each="ol,row : *{product}" th:class="${row.odd}? 'odd'"> -->
+<!--         				<td th:text="${ol.product.name}">Strawberries</td> -->
+<!--         				<td th:text="${ol.product.price}" class="number">3</td> -->
+<!--        	 				<td th:text="${ol.product.price}" class="number">23.32</td> -->
       
                         
-                        <td><h5>Subtotal</h5></td>
-                        <td class="text-right"> <input th:text="*{#aggregates.sum(product.{price * price})}"></input><h5><strong>$24.59</strong></h5></td>
+<!--                         <td><h5>Subtotal</h5></td> -->
+<!--                         <td class="text-right"> <input th:text="*{#aggregates.sum(product.{price * price})}"></input><h5><strong>$24.59</strong></h5></td> -->
+<!--                     </tr> -->
+                    <tr>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>   </td>
+                        <td><h4>Total HT</h4></td>
+                        <td class="text-right" ><h4 id="total"></h4><span></span></td>
                     </tr>
                     <tr>
                         <td>   </td>
                         <td>   </td>
                         <td>   </td>
-                        <td><h5>Estimated shipping</h5></td>
-                        <td class="text-right" ><h5><strong>$6.94</strong></h5></td>
+                        <td><h3>Total TTC</h3></td>
+                        <td class="text-right"><h3 id="tva"></h3><span></span></td>
                     </tr>
                     <tr>
                         <td>   </td>
                         <td>   </td>
                         <td>   </td>
-                        <td><h3>Total</h3></td>
-                        <td class="text-right"><h3 id="total"><strong>$31.53</strong></h3></td>
-                    </tr>
-                    <tr>
-                        <td>   </td>
-                        <td>   </td>
-                        <td>   </td>
-                        <td>
-                        <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
-                        </button></td>
+                        <td>  
+	<button type="button" class="btn btn-success btn-sm" onclick="goFacture();"><span class="glyphicon glyphicon-shopping-cart"></span>Valider</button>
+
+                       </td>
                         <td>
                         <button type="button" class="btn btn-success">
                             Checkout <span class="glyphicon glyphicon-play"></span>
@@ -345,11 +310,8 @@ Montant TVA (19.6%) <input type ='text' Name='tva'/>
  <input type ='text' Name='ttc'/> -->
 </FORM>
 
-<form th:action="@{/facture}" method="post">
- <div class="col-sm-offset-2 col-sm-10">
-	<button type="submit" class="btn btn-success btn-sm">Valider</button>
-</div>
-</form>
+
+
 <script type="text/javascript" th:inline="javascript">  
 
 
@@ -362,12 +324,12 @@ Form1.qte.value = '0';
 }
 else
 {
-alert('bonjour');
+
 var table = document.getElementById('facture');
 var r = table.rows.length;
-alert('Nb Lignes :'+r);
 var a = 1;
 var total = document.getElementById('total');
+var tva = document.getElementById('tva');
 var monTotal = 0;
 var st = 0;
 /* <![CDATA[ */
@@ -384,7 +346,11 @@ var st = 0;
         	  monTotal = Number(monTotal) + Number(st);
  			
          }
-         total.innerHTML = monTotal;
+         total.innerHTML = monTotal + ' €';
+         
+     
+         tva.innerHTML = (monTotal / 100) * 19.6 + monTotal +' €';
+        
          
 /* ]]> */
 }
@@ -396,8 +362,51 @@ var st = 0;
 
 
 
+<script type="text/javascript" th:inline="javascript">  
+    function goFacture()
+    {
+    	var tab= '';
+    	var table = document.getElementById('facture');
+    	var r = table.rows.length;
+    	alert('Nb Lignes :'+r);
+    
+    	/* <![CDATA[ */
+    	         for(var rr=1;rr < r-4; rr++) {
+    	        	var a=table.rows[rr];
+    	            var listeInput = a.getElementsByTagName('input');
+    	            //alert(listeInput.length);
+    	            
+    	            //alert(listeInput[0].value);
+        	        tab=tab+listeInput[0].value+'-';	
+    	            
+    	        	
+    	        	  
+    	         }
+    	window.location="/facture?quantite="+tab;
+    	/* ]]> */
+    }
+</script>
 
- 
+ <script type="text/javascript">
+function getSelectedOptions(){
+	// alert('hi');
+	 var r=true;
+	var foo = document.getElementById('listeproduits');
+	if (foo)
+	{
+	   if (foo.selectedIndex == -1)
+	   {
+	      //foo.selectedIndex = 0;
+	      alert('product not selected');
+	       return false;
+	   }
+		   return true; 
+	  
+	}
+	
+	
+}
+</script>
    
   
 </body>

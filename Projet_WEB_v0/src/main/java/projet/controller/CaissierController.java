@@ -12,9 +12,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import projet.model.Bill;
 import projet.model.Caissier;
 import projet.model.Client;
+import projet.model.Product;
+import projet.repository.BillRepository;
 import projet.repository.CaissierRepository;
 import projet.repository.FactureRepository;
 import projet.repository.ProductRepository;
@@ -29,6 +33,8 @@ public class CaissierController {
 	private ProductRepository productRepository;
 	@Autowired
 	private FactureRepository factureRepository;
+	@Autowired
+	private BillRepository billRepository;
 	
 	
 	@RequestMapping(value="/lCaissiers", method=RequestMethod.GET)
@@ -93,6 +99,40 @@ public class CaissierController {
 		session.setAttribute("panierProduits",productRepository.findAll());
 		model.addAttribute("facture",factureRepository.findAll());
 		return "facture"; 
+	}
+	
+	@RequestMapping(value = "/facture", method = RequestMethod.GET)
+	public String facture(Model model,HttpSession session,@RequestParam("quantite") String qte) {
+		int cpt =0;
+		List<Product> listproduit = (List<Product>) productRepository.findAll();
+		String[] tableau = qte.split("-");
+		System.out.println(tableau.length);
+		
+		List<Bill> listfacture = (List<Bill>) billRepository.findAll();
+		for (int j=0;j<listfacture.size();j++)
+		{
+			
+				listfacture.get(j).setQte(Integer.parseInt(tableau[cpt]));
+				cpt++;
+			
+		}
+		for(int i=0;i<listproduit.size();i++) {
+			for(int j=0;j<listfacture.size();j++) {
+				if(listproduit.get(i).getName().equals(listfacture.get(j).getProduit()))
+					listfacture.get(j).setPrix(listproduit.get(i).getPrice());
+			}
+		}
+		model.addAttribute("OurProducts",listfacture);
+			
+		return "facture"; 
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/toCaisse", method = RequestMethod.POST)
+	public String toCaisse(@RequestParam("name") String name) {
+		Product p = productRepository.findByName(name);
+		System.out.println(p.toString());
+		return p.getPrice().toString(); 
 	}
 
 }

@@ -20,6 +20,7 @@ public class Product {
 	public String price;
 	public String provenance;
 	public String categorie;
+	public int qte;
 	
 	public String getRef() {
 		return ref;
@@ -77,6 +78,14 @@ public class Product {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	
+	public int getQte() {
+		return qte;
+	}
+	public void setQte(int qte) {
+		this.qte = qte;
 	}
 	@Override
 	public String toString() {

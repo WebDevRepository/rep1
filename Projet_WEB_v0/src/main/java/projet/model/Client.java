@@ -27,11 +27,11 @@ public class Client {
 	public Client(){}
 	
 	
-	public Client(long id, String refc, String nom, String prenom, int age,
+	public Client(long id,String refc, String nom, String prenom, int age,
 			String entreprise, String adresse, String ville, String email,
 			String groupe) {
 		super();
-		this.id = id;
+		this.id=id;
 		this.refc = refc;
 		this.nom = nom;
 		this.prenom = prenom;

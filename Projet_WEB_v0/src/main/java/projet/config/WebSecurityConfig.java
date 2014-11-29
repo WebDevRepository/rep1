@@ -66,20 +66,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			//administrateurRepository.save(new Administrateur("elf@gmail.com","elfelf"));
 	        //administrateurRepository.save(new Administrateur("anas@gmail.com","anas"));
 	        
-			caissierRepository.save(new Caissier("el farouf","taoufik",20,"Rue ibnou habous","taoufik@hotmail.com","elf"));
-	        caissierRepository.save(new Caissier("el Mourabit","Anas",20,"Rue du passage","anas@gmail.com","anas"));
+			caissierRepository.save(new Caissier(null, "el farouf","taoufik",null, 20,"Rue ibnou habous","taoufik@hotmail.com","elf"));
+	        caissierRepository.save(new Caissier(null, "el Mourabit","Anas",null, 20,"Rue du passage","anas@gmail.com","anas"));
 			
 	        listeCaissiers = (ArrayList<Caissier>) caissierRepository.findAll();
 			System.out.println("taille :"+listeCaissiers.size());
 			Administrateur administrateur=new Administrateur();
 			int i=0;
 			boolean verif=false;
-			while (i<listeCaissiers.size() && verif==false) {
-				auth.inMemoryAuthentication().withUser(listeCaissiers.get(i).getEmail()).password(listeCaissiers.get(i).getMdp()).roles("USER");
+			while (i<listeCaissiers.size()) {
+				auth.inMemoryAuthentication().withUser(listeCaissiers.get(i).getEmail()).password(listeCaissiers.get(i).getMdp()).roles("USER")
+				.and().withUser(listeCaissiers.get(i+1).getEmail()).password(listeCaissiers.get(i+1).getMdp()).roles("USER");
 				
 				//administrateur.setEmail(listeAdms.get(i).getEmail());administrateur.setMdp(listeAdms.get(i).getMdp());
-				verif = true;
+				//verif = true;
 				i++;
+				break;
 
 			}
 			

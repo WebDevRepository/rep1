@@ -34,7 +34,7 @@
         <ul class="nav navbar-nav">
             <li><a href="/lProduits">Produits</a></li>
             <li><a href="/lClients">Clients</a></li>
-            <li><a href="/caissiers">Employés</a></li>
+            <li><a href="/lCaissiers">Employés</a></li>
         	
         </ul>
         <form class="navbar-form navbar-left" role="search">
@@ -117,7 +117,7 @@
 <div class="control-group">
   <label class="control-label" for="textinput">Age :</label>
   <div class="controls">
-    <input id="textinput" name="age" th:field="*{age}" type="text" placeholder="Age du client" class="input-xlarge" required="required"/>
+    <input id="textinput" name="age" th:field="*{age}" min="18" max="100" type="text" placeholder="Age du client" class="input-xlarge" required="required"/>
   </div>
 </div>
 

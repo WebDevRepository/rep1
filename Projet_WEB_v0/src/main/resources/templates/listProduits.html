@@ -34,7 +34,7 @@
         <ul class="nav navbar-nav">
             <li><a href="/lProduits">Produits</a></li>
             <li><a href="/lClients">Clients</a></li>
-            <li><a href="/caissiers">Employés</a></li>
+            <li><a href="/lCaissiers">Employés</a></li>
         	
         </ul>
         <form class="navbar-form navbar-left" role="search">
@@ -51,7 +51,7 @@
               <ul class="dropdown-menu" role="menu">
                 <li><a href="/lProduits">Gestion des produits</a></li>
                 <li><a href="/lClients">Gestion des clients</a></li>
-                <li><a href="/caissiers">Gestion des Employés</a></li>
+                <li><a href="/lCaissiers">Gestion des Employés</a></li>
                 <li class="divider"></li>
                 <li><a th:action="@{/signout}" href="/login">Déconnexion</a></li>
               </ul>
@@ -74,13 +74,11 @@
     </form>
     
     
-<div class="panel panel-default">
-  
-  <div class="panel-heading"><strong>Liste des produits</strong></div>
- 
-<a href="/fProduit"> > Ajouter un nouveau produit : </a>
-
+<div class="panel panel-default">  
+  <div class="panel-heading"><strong>Liste des produits:</strong></div> 
 </div>
+
+<a href="/fProduit"> > Ajouter un nouveau produit : </a>
 
 <!--     <ul class="list-group"> -->
 <!--     	<li class="list-group-item list-group-item-success" th:each="product : ${products}" > -->
@@ -94,54 +92,69 @@
     		 
 <!--     	</li> -->
 <!--     </ul> -->
-<div class="container"> 
+
+
+        
+        
+<div class="container">
+	<div class="row">
+		
+        
+        <div class="col-md-12">
+        <div class="table-responsive">
+        
+                
+              <table id="mytable" class="table table-bordred table-striped">
+                   
+                   <thead>
+                   <tr> 
+                   
+                 <th><input type="checkbox" id="checkall"/></th>
+                 <td>Réference</td> 
+         		 <td>Nom</td> 
+         		 <td>Description</td>
+        	     <td>Prix</td>
+          		 <td>Provenance</td>
+                 <td>Catégorie</td>
+                 <th>Modifier</th>
+                 <th>Supprimer</th>
+                   
+                    </tr>   
+                   </thead>
+    <tbody>
     
-    <div class="row"> 
-    <div class="col-xs-12 col-sm-10 col-md-6"> 
-
-     
-        <table class="table table-bordered table-striped table-hover" title="Table"> 
+    <tr  th:each="produit : ${session.panierProduits}">
+    <td><input type="checkbox" class="checkthis" /></td>
+    
+    <td class="success" th:text="${produit.ref}"></td>
+    <td th:text="${produit.name}"></td>
+    <td th:text="${produit.description}"></td>
+    <td th:text="${produit.price}"></td>
+    <td th:text="${produit.provenance}"></td>
+    <td th:text="${produit.categorie}"></td>
+    
+   
+    <td> <span class="label label-success">  <a th:href="@{/edit(id=${produit.id})}">edit</a></span></td>
+    <td> <span class="label label-danger"> <a th:href="@{/delete(id=${produit.id})}">delete</a></span></td>
+  
+        </tr>
+    
+    </tbody>
         
-        <!-- le titre du tableau -->
-        <thead> 
+</table>
+
+</div>
+            
+        </div>
+	</div>
+</div>
         
-          <tr> 
-          <td>Réference</td> 
-          <td>Nom</td> 
-          <td>Description</td>
-          <td>Prix</td>
-          <td>Provenance</td>
-          <td>Catégorie</td>
-          
-          </tr> 
-        </thead>
         
-
-        <!-- les éléments du tableau -->
-        <tbody> 
         
-          
-          <tr th:each="product : ${session.panierProduits}"> 
-          
-          <td class="success" th:text="${product.ref}"></td>
-          <td th:text="${product.name}"></td>
-          <td th:text="${product.description}"></td>
-          <td th:text="${product.price}">$</td>
-          <td th:text="${product.provenance}"></td>
-          <td th:text="${product.categorie}"></td>
-          
-          <td> <span class="label label-success">  <a th:href="@{/edit(id=${product.id})}">edit</a></span></td>
-    	  <td> <span class="label label-danger"> <a th:href="@{/delete(id=${product.id})}">delete</a></span></td>
-          
-          </tr> 
+ 
 
-        </tbody> 
 
-        </table>
 
-    </div> 
-    </div> 
-</div> 
 <script src="http://bootstrap.twit.free.fr/js/jquery.js"></script> 
 <script src="http://bootstrap/js/bootstrap.min.js "></script>
  <script type="text/javascript">

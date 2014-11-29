@@ -16,11 +16,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import projet.model.Administrateur;
+import projet.model.Bill;
 import projet.model.Caissier;
 import projet.model.Client;
 import projet.model.Facture;
 import projet.model.Product;
 import projet.repository.AdministrateurRepository;
+import projet.repository.BillRepository;
 import projet.repository.FactureRepository;
 import projet.repository.ProductRepository;
 
@@ -36,6 +38,8 @@ public class AdministrateurController {
 	private AdministrateurRepository administrateurRepository;
 	@Autowired
 	private ProductRepository productRepository;
+	@Autowired
+	private BillRepository billRepository;
 	
 	@RequestMapping(value="/admin", method=RequestMethod.GET)
 	public String loadAdminForm(Administrateur administrateur)
@@ -125,8 +129,21 @@ public class AdministrateurController {
 	}
 	
 	@RequestMapping(value = "/pointVente", method = RequestMethod.GET)
-	public String pointDeVente(@ModelAttribute Administrateur administrateur,HttpSession session,Model model) {
-		model.addAttribute("facture",new Facture());
+	public String pointDeVente(@ModelAttribute Bill bill,@ModelAttribute Administrateur administrateur,HttpSession session,Model model) {
+		List<Product> listProduit = (List<Product>) productRepository.findAll();
+		List<Bill> listfacture = (List<Bill>) billRepository.findAll();
+		model.addAttribute("produitsss",productRepository.findAll());
+		if(listfacture!=null)
+		{
+			model.addAttribute("listeFacture",listfacture);
+		}
+		for(int i=0;i<listProduit.size();i++) {
+			for(int j=0;j<listfacture.size();j++) {
+				if(listProduit.get(i).getName().equals(listfacture.get(j).getProduit()))
+					listfacture.get(j).setPrix(listProduit.get(i).getPrice());
+			}
+		}
+		
 		session.setAttribute("panierProduits",productRepository.findAll());
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		session.getAttribute("caissier");

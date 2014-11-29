@@ -16,9 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 
-import projet.model.Caissier;
 import projet.model.Client;
-import projet.model.Product;
 import projet.repository.ClientRepository;
 
 

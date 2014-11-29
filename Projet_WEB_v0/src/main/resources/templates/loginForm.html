@@ -7,7 +7,7 @@
 <style type="text/css">
 body {
         background-color: #444;
-        background: url(http://s18.postimg.org/l7yq0ir3t/pick8_1.jpg);
+        background: url();
         
     }
     .form-signin input[type="text"] {
@@ -73,36 +73,127 @@ $(document).ready(function() {
 </head>
         <body>
           
-	      <div th:if="${param.logout}">You have been logged out.</div>
-            <div class="container">
-                <div class="row vertical-offset-100">
-                    <div class="col-md-4 col-md-offset-4">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">                                
-                                <div class="row-fluid user-row">
-                                    <img src="http://s11.postimg.org/7kzgji28v/logo_sm_2_mr_1.png" class="img-responsive" alt="Conxole Admin"/>
-                                </div>
-                            </div>
-                            <div class="panel-body">
-                                <form th:action="@{/login}" method="post" accept-charset="UTF-8" role="form" class="form-signin">
-                                    <fieldset>
-                                        <label class="panel-login">
-                                            <div class="login_result"></div>
-                                        </label>
-                                        <div th:if="${param.error}"><p class="errorLogging">Email ou mot passe erroné</p></div>
-                                        <input class="form-control" name="email" placeholder="Email" type="text"/><br/>
-                                        <input class="form-control" name="pwd" placeholder="Password" type="password"/><br/>
-                                        <input class="btn btn-lg btn-success btn-block" type="submit" id="login" value="Login »"/>
-                                    </fieldset>
-                                </form>
-                            </div>
-                            <div class="panel-footer">
-						       zone réservée <a href="/administrateur"> Admin</a>
-						    </div>
+          
+        
+
+    <div id="login-overlay" class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+              <h4 class="modal-title" id="myModalLabel">Bienvenue dans notre page d'acceuil</h4>
+          </div>
+          <div class="modal-body">
+              <div class="row">
+                  <div class="col-xs-6">
+                      <div class="well">
+                          <form th:action="@{/login}" method="post" id="loginForm" novalidate="novalidate">
+                              <div class="form-group">
+                                  <label for="username" class="control-label">Login</label>
+                                  <input type="text" class="form-control" id="username" name="email" value="" required="" title="Please enter you username" placeholder="example@gmail.com"/>
+                                  <span class="help-block"></span>
+                              </div>
+                              
+                                        
+                                      
+                              
+                              <div class="form-group">
+                                  <label for="password" class="control-label">Mot de passe</label>
+                                  <input type="password" class="form-control" id="password" name="pwd" value="" required="" title="Please enter your password"/>
+                                  <span class="help-block"></span>
+                              </div>
+                              
+                              
+                              <div th:if="${param.error}" id="loginErrorMsg" class="alert alert-error hide">Login et/ou mot de passe incorrects</div>
+                              <div class="checkbox">
+                                  <label>
+                                      <input type="checkbox" name="remember" id="remember"/> Mémoriser
+                                  </label>
+                                
+                              </div>
+                              <button type="submit" class="btn btn-success btn-block">Se connecter</button>
+                              <a href="/forgot/" class="btn btn-default btn-block">Mot de passe oublié ?</a>
+                          </form>
+                      </div>
+                  </div>
+                  <div class="col-xs-6">
+                      <p class="lead"><span class="text-success">Partie Administration</span></p>
+                      <ul class="list-unstyled" style="line-height: 2">
+                          <li><span class="fa fa-check text-success"></span> Gestion des produits</li>
+                          <li><span class="fa fa-check text-success"></span> Gestion des clients</li>
+                          <li><span class="fa fa-check text-success"></span> Gestion des employés</li>
+                          <li><span class="fa fa-check text-success"></span> Gestion des tickets</li>
+                          <li><span class="fa fa-check text-success"></span> Gestion de la caisse</li>
+                          
+                      </ul>
+                       
+                      <p><a href="/administrateur" class="btn btn-info btn-block">zone réservée | Admin</a></p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+<!-- 	      <div th:if="${param.logout}">You have been logged out.</div> -->
+<!--             <div class="container"> -->
+<!--                 <div class="row vertical-offset-100"> -->
+<!--                     <div class="col-md-4 col-md-offset-4"> -->
+<!--                         <div class="panel panel-default"> -->
+<!--                             <div class="panel-heading">                                 -->
+<!--                                 <div class="row-fluid user-row"> -->
+<!--                                     <img src="http://s11.postimg.org/7kzgji28v/logo_sm_2_mr_1.png" class="img-responsive" alt="Conxole Admin"/> -->
+<!--                                 </div> -->
+<!--                             </div> -->
+<!--                             <div class="panel-body"> -->
+<!--                                 <form th:action="@{/login}" method="post" accept-charset="UTF-8" role="form" class="form-signin"> -->
+<!--                                     <fieldset> -->
+<!--                                         <label class="panel-login"> -->
+<!--                                             <div class="login_result"></div> -->
+<!--                                         </label> -->
+<!--                                         <div th:if="${param.error}"><p class="errorLogging">Email ou mot passe erroné</p></div> -->
+<!--                                         <input class="form-control" name="email" placeholder="Email" type="text"/><br/> -->
+<!--                                         <input class="form-control" name="pwd" placeholder="Password" type="password"/><br/> -->
+<!--                                         <input class="btn btn-lg btn-success btn-block" type="submit" id="login" value="Login »"/> -->
+<!--                                     </fieldset> -->
+<!--                                 </form> -->
+<!--                             </div> -->
+<!--                             <div class="panel-footer"> -->
+<!-- 						       zone réservée <a href="/administrateur"> Admin</a> -->
+<!-- 						    </div> -->
 				            
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--             </div> -->
         </body>
        </html> 

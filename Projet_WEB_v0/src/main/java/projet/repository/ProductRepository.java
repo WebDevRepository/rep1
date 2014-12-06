@@ -8,5 +8,5 @@ import projet.model.Product;
 public interface ProductRepository extends CrudRepository<Product, Long>{
 	public Product findByName(String name);
 	
-
+// 
 }

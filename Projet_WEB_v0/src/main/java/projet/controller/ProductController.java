@@ -72,6 +72,8 @@ public class ProductController {
 		
 		session.setAttribute("panierProduits1",panier);
 		productRepository.save(product);
+		
+		
 		return "redirect:/lProduits1";
 		
 	}

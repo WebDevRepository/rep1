@@ -46,7 +46,19 @@ public class Application {
             clientRepository.save(new Client(4654, "El","Mourabit","rue de l'avenue", 22, "27", "anas@gmail.com", null, null, null));
             
 
-          productRepository.save(new Product(0, "RGTH5","Produit1","Description","27","marque", null));
+            productRepository.save(new Product(0, "RGTH5","Produit1","Description","21","marque", null));
+            productRepository.save(new Product(0, "REFG4","Produit2","Description","22","marque", null));
+            productRepository.save(new Product(0, "RGTH6","Produit3","Description","23","marque", null));
+            productRepository.save(new Product(0, "REFG7","Produit4","Description","24","marque", null));
+            productRepository.save(new Product(0, "RGTH5","Produit1","Description","25","marque", null));
+            productRepository.save(new Product(0, "REFG4","Produit2","Description","26","marque", null));
+            productRepository.save(new Product(0, "RGTH6","Produit3","Description","27","marque", null));
+            productRepository.save(new Product(0, "REFG7","Produit4","Description","28","marque", null));
+            productRepository.save(new Product(0, "RGTH5","Produit1","Description","27 $","marque", null));
+            productRepository.save(new Product(0, "REFG4","Produit2","Description","230 $","marque", null));
+            productRepository.save(new Product(0, "RGTH6","Produit3","Description","27","marque", null));
+            productRepository.save(new Product(0, "REFG7","Produit4","Description","23","marque", null));
+            productRepository.save(new Product(0, "RGTH5","Produit1","Description","27","marque", null));
             productRepository.save(new Product(0, "REFG4","Produit2","Description","23","marque", null));
             productRepository.save(new Product(0, "RGTH6","Produit3","Description","27","marque", null));
             productRepository.save(new Product(0, "REFG7","Produit4","Description","23","marque", null));

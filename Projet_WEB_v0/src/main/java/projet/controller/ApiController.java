@@ -23,7 +23,7 @@ public class ApiController {
 	public Product getProduct(){
 		
 		
-		return  productRepository.findOne(null);
+		return  productRepository.findOne(null);}
 		
 	@RequestMapping(value="/product/{id}/{nb}" , method = RequestMethod.GET)
 	public Product putProduct(@PathVariable(value="id") Long id, @PathVariable(value ="nb") int nb){
@@ -35,9 +35,9 @@ public class ApiController {
 			}
 		
 		productRepository.save(p);
-	}
-	return "" ;
+	
+	return p ;
 
 }
 	
-	
+}

@@ -40,7 +40,12 @@ public class Application {
 	        
 	        caissierRepository.save(new Caissier(null, "el farouf","taoufik",null, 20,"Rue ibnou habous","taoufik@hotmail.com","elf"));
 	        caissierRepository.save(new Caissier(null, "el Mourabit","Anas",null, 20,"Rue du passage","anas@gmail.com","anas"));
-           
+	        caissierRepository.save(new Caissier(null, "el farouf","taoufik",null, 20,"Rue ibnou habous","taoufik@hotmail.com","elf"));
+	        caissierRepository.save(new Caissier(null, "el Mourabit","Anas",null, 20,"Rue du passage","anas@gmail.com","anas"));caissierRepository.save(new Caissier(null, "el farouf","taoufik",null, 20,"Rue ibnou habous","taoufik@hotmail.com","elf"));
+	        caissierRepository.save(new Caissier(null, "el Mourabit","Anas",null, 20,"Rue du passage","anas@gmail.com","anas"));caissierRepository.save(new Caissier(null, "el farouf","taoufik",null, 20,"Rue ibnou habous","taoufik@hotmail.com","elf"));
+	        caissierRepository.save(new Caissier(null, "el Mourabit","Anas",null, 20,"Rue du passage","anas@gmail.com","anas"));caissierRepository.save(new Caissier(null, "el farouf","taoufik",null, 20,"Rue ibnou habous","taoufik@hotmail.com","elf"));
+	        caissierRepository.save(new Caissier(null, "el Mourabit","Anas",null, 20,"Rue du passage","anas@gmail.com","anas"));caissierRepository.save(new Caissier(null, "el farouf","taoufik",null, 20,"Rue ibnou habous","taoufik@hotmail.com","elf"));
+	        caissierRepository.save(new Caissier(null, "el Mourabit","Anas",null, 20,"Rue du passage","anas@gmail.com","anas"));
 	        clientRepository.save(new Client(1, "El","Mourabit","Rue de l'adresse", 19, "Entreprise", "anas@gmail.com", "adresse", "ville", "email"));
             clientRepository.save(new Client(14546989, "Bob","marley","rue de l'adresse", 20, "99", "bob@gmail.com", null, null, null));
             clientRepository.save(new Client(4654, "El","Mourabit","rue de l'avenue", 22, "27", "anas@gmail.com", null, null, null));
